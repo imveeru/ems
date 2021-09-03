@@ -9,7 +9,7 @@ function Login() {
             </div>
             <div className='login-form-box'>
                 <h1 className='title'>Elective Management System<span className='dot'>.</span></h1>
-                <form>
+                <form autocomplete='off'>
                     <div className='input-group'>
                         <label className='input-label' for='username'>Username</label>
                         <input id='username' type='text' className='input-box'></input>

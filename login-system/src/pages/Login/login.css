@@ -44,6 +44,7 @@
 
 .input-group{
     width: 100%;
+    margin:20px 0;
 }
 
 .input-label{
@@ -52,6 +53,9 @@
 }
 
 .input-box{ 
-    padding: 15px;
+    padding: 12px;
     width:100%;
+    border-radius:10px;
+    border: 1px solid rgba(0,0,0,0.5);
+    margin-top:5px ;
 }
