@@ -12,11 +12,11 @@ function Login() {
                 <form autocomplete='off'>
                     <div className='input-group'>
                         <label className='input-label' for='username'>Username</label>
-                        <input id='username' type='text' className='input-box'></input>
+                        <input id='username' type='text' placeholder='CB.EN.U4EEE19101' className='input-box'></input>
                     </div>
                     <div className='input-group'>
                         <label className='input-label' for='password'>Password</label>
-                        <input id='password' type='password' className='input-box'></input>
+                        <input id='password' type='password' placeholder='•••••••••••••••' className='input-box'></input>
                     </div>
                 </form>
             </div>
