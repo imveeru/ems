@@ -3,18 +3,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-@font-face {
-  font-family: 'SamsungSharpSansBold';
-  src: url('./fonts/SamsungSharpSans-Bold.ttf');
-}
-
-@font-face {
-  font-family: 'SamungOne400';
-  src: url('./fonts/SamsungOne-400.ttf');
-}
-
-@font-face {
-  font-family: 'SamungOne700';
-  src: url('./fonts/SamsungOne-700.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
