@@ -22,6 +22,36 @@
 }
 
 .title{
-    font-size:50px;
-    width:350px;
+    font-size:60px;
+    width:450px;
+    word-wrap: break-word;
+    line-height:95%
+}
+
+.dot{
+    font-size: 1.2em;
+    color: rgba(46,106,218);
+}
+
+.login-form-box>form{
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+    justify-content:center;
+    padding: 0;
+    width: 46%;
+}
+
+.input-group{
+    width: 100%;
+}
+
+.input-label{
+    font-size: 20px;
+    font-weight:400;
+}
+
+.input-box{ 
+    padding: 15px;
+    width:100%;
 }
