@@ -1,0 +1,17 @@
+.login-page{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.login-img>img{
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  background-position: 50% 50%;
+}
+
+.title{
+    font-family:SamsungSharp,Verd;
+}
