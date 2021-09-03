@@ -2,26 +2,25 @@
     display:flex; 
     justify-content: space-between;
     align-items: center;
-    padding: 10px 100px;
-    background:rgb(245, 245, 245);
-    font-family: 'Open Sans', sans-serif;
+    padding: 5px 100px;
+    border-bottom: 1px solid rgb(0, 0, 0,0.1);
+    font-family: 'Poppins';
     font-weight: 600;
-    font-size:25px;
 }
 
 .logout-btn{
-    color: rgb(30, 135, 255);
-    background:none !important;
-    border:none;
+    display:flex; 
+    align-items: center;
+    color: #fff;
+    background:rgb(30, 135, 255,0.75);
+    border: none;
+    border-radius:10px;
+    padding: 10px;
+    font-family: 'Poppins';
     font-weight: 600;
-    font-size:15px;
 }
 
 .logout-btn:hover{ 
-    text-decoration: underline;
     cursor: pointer;
-}
-.logout-btn:focus{ 
-    background:none !important;
-    border:none;    
+    background:rgb(30, 135, 255);
 }
