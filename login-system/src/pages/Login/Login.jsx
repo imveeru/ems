@@ -1,11 +1,10 @@
 import React, { useState,useRef } from 'react'
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "../../context/Auth"
 import './login.css'
 
 function Login() {
 
-    const[username,setUsername]=useState('')
-    const[password,setPassword]=useState('')
+    
 
     const handleSubmit=()=>{
 
