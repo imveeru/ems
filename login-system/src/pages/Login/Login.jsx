@@ -18,6 +18,7 @@ function Login() {
                         <label className='input-label' for='password'>Password</label>
                         <input id='password' type='password' placeholder='•••••••••••••••' className='input-box'></input>
                     </div>
+                    <button className='login-btn'>Log In</button>
                 </form>
             </div>
         </div>
