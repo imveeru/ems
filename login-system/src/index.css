@@ -4,3 +4,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: 'SamsungSharpSansBold';
+  src: url('./fonts/SamsungSharpSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'SamungOne400';
+  src: url('./fonts/SamsungOne-400.ttf');
+}
+
+@font-face {
+  font-family: 'SamungOne700';
+  src: url('./fonts/SamsungOne-700.ttf');
+}
