@@ -9,6 +9,7 @@ import {
   // Link
 } from 'react-router-dom'
 import { AuthProvider } from "./context/AuthContext"
+import PrivateRoute from './routes/PrivateRoute'
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
       <AuthProvider>
         <div className="App">
           <Switch>
-            <Route exact path="/"/>
+            <PrivateRoute exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
           </Switch>
         </div>

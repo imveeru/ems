@@ -1,6 +1,6 @@
 import React, { useState,useRef } from 'react'
 import { useAuth } from "../../context/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import './login.css'
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -26,13 +26,13 @@ function Login() {
             history.push('/')
         }catch{
             setError(true)
+            error&&toast.error('Username/Password is incorrect!')
         }
     }
 
     return (
         <div className='login-page'>
             <Toaster/>
-            {error&&toast.error('Username/Password is incorrect!')}
             <div className='login-img'>
                 <img src='https://i.imgur.com/9pzQyj2.jpg' alt='Log in'/>
             </div>
@@ -41,11 +41,11 @@ function Login() {
                 <form autoComplete='off' onSubmit={handleSubmit}>
                     <div className='input-group'>
                         <label className='input-label' htmlFor='username'>Username</label>
-                        <input id='username' type='text' placeholder='CB.EN.U4EEE19101' ref={usernameRef} className='input-box' autoFocus></input>
+                        <input id='username' type='text' placeholder='CB.EN.U4EEE19101' ref={usernameRef} className='input-box' autoFocus required></input>
                     </div>
                     <div className='input-group'>
                         <label className='input-label' htmlFor='password'>Password</label>
-                        <input id='password' type='password' placeholder='•••••••••••••••' minLength='8' ref={passwordRef} className='input-box'></input>
+                        <input id='password' type='password' placeholder='•••••••••••••••' minLength='8' ref={passwordRef} className='input-box' required></input>
                     </div>
                     <button className='login-btn' type='submit'>Log In</button>
                 </form>
