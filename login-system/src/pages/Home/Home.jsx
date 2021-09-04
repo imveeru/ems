@@ -9,14 +9,15 @@ function Home() {
     const {currentUser}=useAuth()
     //console.log(currentUser)
 
-    //const[userData,setUserData]=useState()
+    const[userData,setUserData]=useState({})
 
     const userDbRef=db.collection('users')
 
     const fetchUserData=async()=>{
         const res=userDbRef.doc(currentUser.uid)
         const data=await res.get()
-        console.log(data.data())
+        setUserData(data.data())
+        //console.log(userData);
     }
 
     useEffect(()=>{
@@ -27,7 +28,8 @@ function Home() {
         <div>
             <Header />
             <div className="home-container">
-                <h1>Welcome {currentUser.uid}</h1>
+                <h1>Welcome {userData.name}!</h1>
+                <p className="user-details">Semester : {userData.currentSem}</p>
             </div>
         </div>
     )
