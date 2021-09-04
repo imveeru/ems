@@ -40,3 +40,7 @@ h1{
     background: rgba(193, 227, 255, 0.5);
     color:rgb(17, 87, 168);
 }
+.user-details>p:nth-child(4){
+    background: rgba(255, 249, 193, 0.5);
+    color:rgb(190, 173, 22);
+}
