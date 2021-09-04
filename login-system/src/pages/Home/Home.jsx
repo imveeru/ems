@@ -5,6 +5,7 @@ import {db} from '../../firebase'
 import './home.css'
 import Student from '../Student/Student'
 import Faculty from '../Faculty/Faculty'
+import Admin from '../Admin/Admin'
 
 function Home() {
 
@@ -31,6 +32,7 @@ function Home() {
             <Header />
             {userData.role==='student'?<Student userData={userData}/>:null}
             {userData.role==='faculty'?<Faculty userData={userData}/>:null}
+            {userData.role==='admin'?<Admin userData={userData}/>:null}
         </div>
     )
 }
