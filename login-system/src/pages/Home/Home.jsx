@@ -4,6 +4,7 @@ import {useAuth} from '../../context/AuthContext'
 import {db} from '../../firebase'
 import './home.css'
 import Student from '../Student/Student'
+impot
 
 function Home() {
 
@@ -28,7 +29,8 @@ function Home() {
     return (
         <div>
             <Header />
-            <Student userData={userData}/>
+            {userData.role==='student'?<Student userData={userData}/>:null}
+            {userData.role==='faculty'?<Faculty userData={userData}/>:null}
         </div>
     )
 }
