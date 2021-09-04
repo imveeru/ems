@@ -32,7 +32,7 @@ function Login() {
 
     return (
         <div className='login-page'>
-            <Toaster/>
+            <Toaster position='top-right'/>
             <div className='login-img'>
                 <img src='https://i.imgur.com/9pzQyj2.jpg' alt='Log in'/>
             </div>
