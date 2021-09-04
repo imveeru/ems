@@ -4,7 +4,7 @@ import {useAuth} from '../../context/AuthContext'
 import {db} from '../../firebase'
 import './home.css'
 import Student from '../Student/Student'
-impot
+import Faculty from '../Faculty/Faculty'
 
 function Home() {
 
