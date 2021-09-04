@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
 import {useAuth} from '../../context/AuthContext'
+import './home.css'
 
 function Home() {
 
@@ -10,7 +11,9 @@ function Home() {
     return (
         <div>
             <Header />
-            <h1>Welcome {currentUser.uid}</h1>
+            <div className="home-container">
+                <h1>Welcome {currentUser.uid}</h1>
+            </div>
         </div>
     )
 }
