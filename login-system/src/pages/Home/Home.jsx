@@ -5,11 +5,12 @@ import {useAuth} from '../../context/AuthContext'
 function Home() {
 
     const {currentUser}=useAuth()
+    console.log(currentUser)
 
     return (
         <div>
             <Header />
-            <h1>Welcome {currentUser.email}</h1>
+            <h1>Welcome {currentUser.uid}</h1>
         </div>
     )
 }
