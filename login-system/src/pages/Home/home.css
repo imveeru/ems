@@ -21,5 +21,22 @@ h1{
 }
 
 .user-details>p{
-    
+    font-weight: 600;
+    padding:5px 15px;
+    margin:0;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.user-details>p:nth-child(1){
+    background: rgb(255, 193, 193,0.5);
+    color:rgb(255, 64, 64);
+}
+.user-details>p:nth-child(2){
+    background: rgba(211, 255, 193, 0.5);
+    color:rgb(17, 168, 17);
+}
+.user-details>p:nth-child(3){
+    background: rgba(193, 227, 255, 0.5);
+    color:rgb(17, 87, 168);
 }
