@@ -25,7 +25,8 @@
     font-size:60px;
     width:450px;
     word-wrap: break-word;
-    line-height:95%
+    line-height:95%;
+    margin-bottom:50px
 }
 
 .dot{

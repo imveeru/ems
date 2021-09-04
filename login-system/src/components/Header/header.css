@@ -7,7 +7,9 @@
     font-family: 'Poppins';
     font-weight: 600;
 }
-
+.header>h2{
+    margin-bottom: 10px;
+}
 .logout-btn{
     display:flex; 
     align-items: center;
