@@ -8,23 +8,22 @@ import {
   Route,
   // Link
 } from 'react-router-dom'
+import { AuthProvider } from "./context/AuthContext"
 
 function App() {
 
-  var isLoggedIn=false;
-
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
-            {isLoggedIn?<Home />:<Login/>}
-          </Route>
-          <Route path="/login">
-            {isLoggedIn?<Home />:<Login/>}
-          </Route>
-        </Switch>
-      </div>
+      <AuthProvider>
+        <div className="App">
+          <Switch>
+            <Route exact path="/">
+              {isLoggedIn?<Home />:<Login/>}
+            </Route>
+            <Route path="/login" component={Login}/>
+          </Switch>
+        </div>
+      </AuthProvider>
     </Router>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState,useRef } from 'react'
-import { useAuth } from "../../context/Auth"
+import { useAuth } from "../../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import './login.css'
 import toast, { Toaster } from 'react-hot-toast';
@@ -11,7 +11,7 @@ function Login() {
 
     const[error,setError]=useState()
 
-    //const{ login } = useAuth()
+    const{ login } = useAuth()
 
     const history=useHistory()
 
@@ -21,8 +21,9 @@ function Login() {
 
         try{
             setError(false)
-            console.log(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu', passwordRef.current.value);
-            //await login(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu',passwordRef.current.value)
+            //console.log(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu', passwordRef.current.value);
+            await login(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu',passwordRef.current.value)
+            history.push('/')
         }catch{
             setError(true)
         }
