@@ -17,9 +17,7 @@ function App() {
       <AuthProvider>
         <div className="App">
           <Switch>
-            <Route exact path="/">
-              {isLoggedIn?<Home />:<Login/>}
-            </Route>
+            <Route exact path="/"/>
             <Route path="/login" component={Login}/>
           </Switch>
         </div>
