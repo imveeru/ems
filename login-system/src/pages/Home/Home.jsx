@@ -29,7 +29,10 @@ function Home() {
             <Header />
             <div className="home-container">
                 <h1>Welcome {userData.name}!<span className="user-regno">   [{userData.regNo}]</span></h1>
-                <p className="user-details">Program : {userData.program} {userData.branch}</p>
+                <div className="user-details">
+                    <p>{userData.program} {userData.branch}</p>
+                    <p>{userData.program} {userData.branch}</p>
+                </div>
             </div>
         </div>
     )
