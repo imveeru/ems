@@ -1,6 +1,7 @@
-h1{
+h1,h2{
     font-family:Poppins;
     margin-bottom:0;
+    cursor: default;
 }
 
 .home-container{
@@ -26,6 +27,7 @@ h1{
     margin:0;
     margin-right: 10px;
     border-radius: 10px;
+    cursor: default;
 }
 
 .user-details>p:nth-child(1){
