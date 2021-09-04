@@ -28,8 +28,8 @@ function Home() {
         <div>
             <Header />
             <div className="home-container">
-                <h1>Welcome {userData.name}!</h1>
-                <p className="user-details">Semester : {userData.currentSem}</p>
+                <h1>Welcome {userData.name} <span className="user-regno">{userData.regNo}</span>!</h1>
+                <p className="user-details">Program : {userData.program} {userData.branch}</p>
             </div>
         </div>
     )
