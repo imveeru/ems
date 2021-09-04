@@ -1,12 +1,15 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
 import {useAuth} from '../../context/AuthContext'
+import {db} from '../../firebase'
 import './home.css'
 
 function Home() {
 
     const {currentUser}=useAuth()
-    console.log(currentUser)
+    //console.log(currentUser)
+
+    
 
     return (
         <div>
