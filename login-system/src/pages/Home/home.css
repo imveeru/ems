@@ -6,6 +6,12 @@ h1{
     margin:0 100px;
 }
 
+.user-regno{
+    font-size: 0.8em;
+    font-weight: 300;
+    opacity: 0.4;
+}
+
 .user-details{
     font-family: Open Sans;
 }
