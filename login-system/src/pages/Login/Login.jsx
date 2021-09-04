@@ -26,7 +26,7 @@ function Login() {
             history.push('/')
         }catch{
             setError(true)
-            error&&toast.error('Username/Password is incorrect!')
+            toast.error('Username/Password is incorrect!')
         }
     }
 
