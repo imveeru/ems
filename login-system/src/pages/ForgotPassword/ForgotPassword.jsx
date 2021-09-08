@@ -7,11 +7,10 @@ import './forgotPassword.css'
 function ForgotPassword() {
 
     const usernameRef=useRef()
-    const passwordRef=useRef()
 
     const[error,setError]=useState()
 
-    const{ login } = useAuth()
+    const{ resetPassword } = useAuth()
 
     const history=useHistory()
 
@@ -22,11 +21,11 @@ function ForgotPassword() {
         try{
             setError(false)
             //console.log(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu', passwordRef.current.value);
-            await login(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu',passwordRef.current.value)
-            history.push('/')
+            await resetPassword(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu')
+            toast.success('Check your email!')
         }catch{
             setError(true)
-            toast.error('Username/Password is incorrect!')
+            toast.error('An unexpected error occurred!')
         }
     }
 
@@ -44,8 +43,8 @@ function ForgotPassword() {
                         <input id='username' type='text' placeholder='CB.EN.U4EEE19101' ref={usernameRef} className='input-box' autoFocus required></input>
                     </div>
                     <div className='input-btn-group'>
-                        <button className='login-btn' type='submit'>Log In</button>
-                        <Link to='/login' style={{'text-decoration':'none'}}>Login</Link>
+                        <button className='login-btn' type='submit'>Reset Password</button>
+                        <Link to='/login' style={{'textDecoration':'none'}}>Login</Link>
                     </div>
                 </form>
             </div>
