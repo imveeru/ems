@@ -22,7 +22,7 @@ function ForgotPassword() {
             setError(false)
             //console.log(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu', passwordRef.current.value);
             await resetPassword(usernameRef.current.value.toLowerCase()+'@cb.students.amrita.edu')
-            toast.success('Check your email!')
+            toast.success('Check your email! [Check Spam too!]')
         }catch{
             setError(true)
             toast.error('An unexpected error occurred!')
