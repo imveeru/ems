@@ -79,3 +79,15 @@
     cursor: pointer;
     opacity: 0.9;
 }
+
+.input-btn-group{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items:flex-end;
+    justify-content: space-between;
+}
+
+.input-btn-group>Link{
+    margin-top:10px;
+}

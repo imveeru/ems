@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,6 +21,7 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
+            <Route path="/forgot-password" component={ForgotPassword}/>
           </Switch>
         </div>
       </AuthProvider>

@@ -50,7 +50,7 @@ function Login() {
                     </div>
                     <div className='input-btn-group'>
                         <button className='login-btn' type='submit'>Log In</button>
-                        <Link component={ForgotPassword}></Link>
+                        <Link to='/forgot-password' style={{'text-decoration':'none'}}>Forgot Password?</Link>
                     </div>
                 </form>
             </div>
