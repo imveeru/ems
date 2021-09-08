@@ -1,8 +1,9 @@
 import React, { useState,useRef } from 'react'
 import { useAuth } from "../../context/AuthContext"
-import { useHistory } from "react-router-dom"
+import { Link,useHistory } from "react-router-dom"
 import './login.css'
 import toast, { Toaster } from 'react-hot-toast';
+import ForgotPassword from './../ForgotPassword/ForgotPassword';
 
 function Login() {
 
@@ -47,7 +48,10 @@ function Login() {
                         <label className='input-label' htmlFor='password'>Password</label>
                         <input id='password' type='password' placeholder='•••••••••••••••' minLength='8' ref={passwordRef} className='input-box' required></input>
                     </div>
-                    <button className='login-btn' type='submit'>Log In</button>
+                    <div className='input-btn-group'>
+                        <button className='login-btn' type='submit'>Log In</button>
+                        <Link component={ForgotPassword}></Link>
+                    </div>
                 </form>
             </div>
         </div>
