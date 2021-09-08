@@ -3,7 +3,6 @@ import { useAuth } from "../../context/AuthContext"
 import { Link,useHistory } from "react-router-dom"
 import './login.css'
 import toast, { Toaster } from 'react-hot-toast';
-import ForgotPassword from './../ForgotPassword/ForgotPassword';
 
 function Login() {
 
@@ -50,7 +49,7 @@ function Login() {
                     </div>
                     <div className='input-btn-group'>
                         <button className='login-btn' type='submit'>Log In</button>
-                        <Link to='/forgot-password' style={{'text-decoration':'none'}}>Forgot Password?</Link>
+                        <Link to='/forgot-password' style={{'textDecoration':'none'}}>Forgot Password?</Link>
                     </div>
                 </form>
             </div>

@@ -12,7 +12,7 @@ function ForgotPassword() {
 
     const{ resetPassword } = useAuth()
 
-    const history=useHistory()
+    //const history=useHistory()
 
     const handleSubmit=async(e)=>{
 
