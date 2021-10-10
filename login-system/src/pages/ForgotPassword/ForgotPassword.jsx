@@ -1,6 +1,6 @@
 import React, { useState,useRef } from 'react'
 import { useAuth } from "../../context/AuthContext"
-import { Link,useHistory } from "react-router-dom"
+import { Link,/*useHistory*/ } from "react-router-dom"
 import toast, { Toaster } from 'react-hot-toast';
 import './forgotPassword.css'
 
@@ -8,7 +8,7 @@ function ForgotPassword() {
 
     const usernameRef=useRef()
 
-    const[error,setError]=useState()
+    const[/*error*/,setError]=useState()
 
     const{ resetPassword } = useAuth()
 

@@ -20,7 +20,8 @@ function Home() {
         const res=userDbRef.doc(currentUser.uid)
         const data=await res.get()
         setUserData(data.data())
-        //console.log(userData);
+        const userDocRef=res.collection('electives').doc()
+        //console.log(userDocRef);
     }
 
     useEffect(()=>{
@@ -30,7 +31,7 @@ function Home() {
     return (
         <div>
             <Header />
-            {userData.role==='student'?<Student userData={userData}/>:null}
+            {userData.role==='student'?<Student userData={userData} docRef={userDbRef.doc(currentUser.uid)}/>:null}
             {userData.role==='faculty'?<Faculty userData={userData}/>:null}
             {userData.role==='admin'?<Admin userData={userData}/>:null}
         </div>
