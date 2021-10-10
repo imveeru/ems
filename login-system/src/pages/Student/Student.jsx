@@ -11,17 +11,19 @@ function Student({userData,docRef}) {
 
     const fetchUserData=async()=>{
         const docsSnap = await getDocs(collection(db,`users/${currentUser.uid}/electives`));
+        setElectives(docsSnap.docs);
         docsSnap.forEach((doc) => {
             //console.log(docsSnap.doc);
-            setElectives(docsSnap.docs);
-            //console.log(electives); 
+            setElectives(electives=>[...electives,doc.data()]);
         });
     }
 
     useEffect(()=>{
         fetchUserData()
-    },[])
+    })
     
+    //console.log(electives); 
+
     return (
             <div className="home-container">
                 <h1>Welcome {userData.name}!<span className="user-regno">   [{userData.regNo}]</span></h1>
@@ -31,7 +33,11 @@ function Student({userData,docRef}) {
                     <p>{userData.section} - Section</p>
                     <p>Semester - {userData.currentSem}</p>
                 </div>
-                <div>{electives.forEach((elective=><p>{elective.data}</p>))}</div>
+                {
+                    electives.forEach((elective) => {
+                        <p>elective.data</p>
+                    })
+                }
             </div>
     )
 }

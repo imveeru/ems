@@ -31,7 +31,7 @@ function Home() {
     return (
         <div>
             <Header />
-            {userData.role==='student'?<Student userData={userData} docRef={userDbRef.doc(currentUser.uid)}/>:null}
+            {userData.role==='student'?<Student userData={userData}/>:null}
             {userData.role==='faculty'?<Faculty userData={userData}/>:null}
             {userData.role==='admin'?<Admin userData={userData}/>:null}
         </div>
