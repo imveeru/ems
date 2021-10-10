@@ -3,7 +3,7 @@ import { getDocs, collection } from "firebase/firestore";
 import {db} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
 
-function Student({userData,docRef}) {
+function Student({userData}) {
 
     const [electives,setElectives]=useState([]);
 
