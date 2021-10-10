@@ -20,7 +20,7 @@ function Home() {
         const res=userDbRef.doc(currentUser.uid)
         const data=await res.get()
         setUserData(data.data())
-        const userDocRef=res.collection('electives').doc()
+        //const userDocRef=res.collection('electives').doc()
         //console.log(userDocRef);
     }
 

@@ -1,19 +1,21 @@
 import React,{ useState,useEffect} from 'react'
+import { getDocs, collection } from "firebase/firestore";
+import {db} from '../../firebase'
+import {useAuth} from '../../context/AuthContext'
 
 function Student({userData,docRef}) {
 
-    const userDocRef=docRef.collection('electives').doc()
-
     const [electives,setElectives]=useState({});
 
+    const {currentUser}=useAuth()
+
     const fetchUserData=async()=>{
-        const data=await userDocRef.get();
-        data.then(querySnapshot=>{
-            querySnapshot.forEach(doc=>{
-                console.log(doc.id,'=>',doc.data())
-            })
-        })
-        //setElectives(data.data())
+        const docsSnap = await getDocs(collection(db,`users/${currentUser.uid}/electives`));
+        docsSnap.forEach((doc) => {
+            //console.log(doc.data());
+            setElectives(doc.data());
+            console.log(electives); 
+        });
     }
 
     useEffect(()=>{
