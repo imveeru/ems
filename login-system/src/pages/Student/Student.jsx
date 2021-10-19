@@ -3,6 +3,8 @@ import { getDocs, collection,query,orderBy } from "firebase/firestore";
 import {db} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
 
+import ElectiveList from '../../components/ElectiveList/ElectiveList'
+
 function Student({userData}) {
 
     const [electives,setElectives]=useState([]);
@@ -19,7 +21,7 @@ function Student({userData}) {
         //docsSnap.docs.forEach((docs=>console.log(docs.data())))
         //console.log(electiveList)
         const electivesList=[...electives,electiveList]
-        setElectives(electivesList)
+        setElectives(electiveList)
     }
 
     useEffect(()=>{
@@ -37,7 +39,8 @@ function Student({userData}) {
                     <p>{userData.section} - Section</p>
                     <p>Semester - {userData.currentSem}</p>
                 </div>
-                {electives.length!==0?<p>{electives[0][1].elective_1}</p>:<p>Illa</p>}
+                <ElectiveList electives={electives}/>
+                {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )
 }
