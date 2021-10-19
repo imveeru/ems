@@ -1,5 +1,5 @@
 import React,{ useState,useEffect} from 'react'
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection,query,orderBy } from "firebase/firestore";
 import {db} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
 
@@ -10,8 +10,10 @@ function Student({userData}) {
     const {currentUser}=useAuth()
 
     const fetchUserData=async()=>{
-        const docsSnap = await getDocs(collection(db,`users/${currentUser.uid}/electives`));
+        const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
+        const docsSnap = await getDocs(q);
         setElectives(docsSnap.docs);
+        console.log(docsSnap.docs[1].data())
         docsSnap.forEach((doc) => {
             //console.log(docsSnap.doc);
             setElectives(electives=>[...electives,doc.data()]);
@@ -20,7 +22,7 @@ function Student({userData}) {
 
     useEffect(()=>{
         fetchUserData()
-    })
+    },[])
     
     //console.log(electives); 
 
