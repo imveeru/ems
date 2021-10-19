@@ -12,15 +12,14 @@ function Student({userData}) {
     const fetchUserData=async()=>{
         const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
         const docsSnap = await getDocs(q);
-        console.log("5th Sem - ",docsSnap.docs[4].data())
+        //console.log("5th Sem - ",docsSnap.docs[4].data())
 
         const electiveList=[]
         docsSnap.docs.forEach((docs=>electiveList.push(docs.data())))
-        //docsSnap.docs.forEach((docs=>[...electiveList,docs.data()]))
-        console.log(electiveList)
-        //const electivesList=[...electives,electiveList]
-        setElectives(electiveList)
-        console.log("State - ",electives);
+        //docsSnap.docs.forEach((docs=>console.log(docs.data())))
+        //console.log(electiveList)
+        const electivesList=[...electives,electiveList]
+        setElectives(electivesList)
     }
 
     useEffect(()=>{
@@ -38,6 +37,7 @@ function Student({userData}) {
                     <p>{userData.section} - Section</p>
                     <p>Semester - {userData.currentSem}</p>
                 </div>
+                {electives.length!==0?<p>{electives[0][1].elective_1}</p>:<p>Illa</p>}
             </div>
     )
 }
