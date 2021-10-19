@@ -5,19 +5,20 @@ import {useAuth} from '../../context/AuthContext'
 
 function Student({userData}) {
 
-    const [electives,setElectives]=useState([]);
+    const [electives,setElectives]=useState([{}]);
 
     const {currentUser}=useAuth()
 
     const fetchUserData=async()=>{
         const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
         const docsSnap = await getDocs(q);
-        setElectives(docsSnap.docs);
-        console.log(docsSnap.docs[1].data())
-        docsSnap.forEach((doc) => {
-            //console.log(docsSnap.doc);
-            setElectives(electives=>[...electives,doc.data()]);
-        });
+        console.log("5th Sem - ",docsSnap.docs[4].data())
+        
+        var electiveList=[]
+        docsSnap.docs.forEach((docs=>electiveList.push(docs.data())))
+        console.log(electiveList)
+        setElectives(electiveList)
+        console.log("State - ",electives);
     }
 
     useEffect(()=>{
@@ -35,11 +36,6 @@ function Student({userData}) {
                     <p>{userData.section} - Section</p>
                     <p>Semester - {userData.currentSem}</p>
                 </div>
-                {
-                    electives.forEach((elective) => {
-                        <p>elective.data</p>
-                    })
-                }
             </div>
     )
 }
