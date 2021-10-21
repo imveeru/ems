@@ -37,3 +37,7 @@
     font-weight: 100;
     opacity: 0.5;
 }
+
+.elective{
+    cursor: pointer;
+}

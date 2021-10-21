@@ -18,8 +18,9 @@ function Home() {
 
     const fetchUserData=async()=>{
         const res=userDbRef.doc(currentUser.uid)
-        const data=await res.get()
-        setUserData(data.data())
+        await res.onSnapshot((doc)=>{
+            setUserData(doc.data())
+        })
         //const userDocRef=res.collection('electives').doc()
         //console.log(userDocRef);
     }
