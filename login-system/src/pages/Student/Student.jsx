@@ -20,7 +20,7 @@ function Student({userData}) {
         docsSnap.docs.forEach((docs=>electiveList.push(docs.data())))
         //docsSnap.docs.forEach((docs=>console.log(docs.data())))
         //console.log(electiveList)
-        const electivesList=[...electives,electiveList]
+        //const electivesList=[...electives,electiveList]
         setElectives(electiveList)
     }
 

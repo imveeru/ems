@@ -1,9 +1,11 @@
 import React from 'react'
+import './ElectiveList.css'
 
 function ElectiveList({electives}) {
     return (
         <div className="previous-electives-container">
-            <h2>Electives of Previous Semesters</h2>
+        <h2 className="previous-electives-title">Electives of Previous Semesters</h2>
+        <div className="previous-electives-list">
                 {electives.map((elective) =>(
                         <div key={elective.sem} className="previous-elective">
                             <div className="sem-name">Semester - {elective.sem}</div>
@@ -14,6 +16,7 @@ function ElectiveList({electives}) {
                             </div>
                         </div> 
                 ))}
+        </div>
         </div>
     )
 }

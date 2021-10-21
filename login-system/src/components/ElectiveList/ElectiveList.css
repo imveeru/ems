@@ -1,0 +1,33 @@
+*{
+    font-family:Open Sans,sans-serif;
+}
+
+.previous-electives-title{
+    margin:0;
+}
+
+.previous-electives-container{
+    background-color:#fff;
+    padding:20px;
+    margin:25px 0px;
+    border-radius: 10px;
+}
+
+.previous-electives-list{
+    display:flex;
+    align-items:center;
+    margin-top: 15px;
+}
+
+.previous-elective{
+    padding: 20px;
+    margin-right: 20px;
+    background-color:#fdfdfd;
+    border-radius:10px;
+}
+
+.sem-name{
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom:0.5px solid;
+}
