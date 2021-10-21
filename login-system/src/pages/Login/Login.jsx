@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext"
 import { Link,useHistory } from "react-router-dom"
 import './login.css'
 import toast, { Toaster } from 'react-hot-toast';
+import {FiEye,FiEyeOff} from 'react-icons/fi'
 
 function Login() {
 
@@ -11,9 +12,15 @@ function Login() {
 
     const[error,setError]=useState()
 
+    const[showPassword,setShowPassword]=useState(false)
+
     const{ login } = useAuth()
 
     const history=useHistory()
+
+    const handleShowPassword=()=>{
+        setShowPassword(!showPassword)
+    }
 
     const handleSubmit=async(e)=>{
 
@@ -45,7 +52,9 @@ function Login() {
                     </div>
                     <div className='input-group'>
                         <label className='input-label' htmlFor='password'>Password</label>
-                        <input id='password' type='password' placeholder='•••••••••••••••' minLength='8' ref={passwordRef} className='input-box' required></input>
+                        <input id='password' type={showPassword?'text':'password'} placeholder='•••••••••••••••' minLength='8' ref={passwordRef} className='input-box' required></input>
+                        {showPassword?<element className='show-password' onClick={handleShowPassword}><FiEyeOff/></element>:<element className='show-password' type='normal
+                        ' onClick={handleShowPassword}><FiEye/></element>}
                     </div>
                     <div className='input-btn-group'>
                         <button className='login-btn' type='submit'>Log In</button>
