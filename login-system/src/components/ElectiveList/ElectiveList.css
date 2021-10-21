@@ -31,3 +31,9 @@
     padding-bottom: 10px;
     border-bottom:0.5px solid;
 }
+
+.title-tooltip{
+    font-size: 0.6em;
+    font-weight: 100;
+    opacity: 0.5;
+}

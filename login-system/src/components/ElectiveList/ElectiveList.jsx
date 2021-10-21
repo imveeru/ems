@@ -4,7 +4,7 @@ import './ElectiveList.css'
 function ElectiveList({electives}) {
     return (
         <div className="previous-electives-container">
-        <h2 className="previous-electives-title">Electives of Previous Semesters</h2>
+        <h2 className="previous-electives-title">Electives of All Semesters<span className='title-tooltip'> Click on any course to view about it.</span></h2>
         <div className="previous-electives-list">
                 {electives.map((elective) =>(
                         <div key={elective.sem} className="previous-elective">
