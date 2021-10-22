@@ -16,6 +16,7 @@ function Course(props) {
         })
     }
 
+
     useEffect(()=>{
         fetchUserData()
     },[])
@@ -32,6 +33,9 @@ function Course(props) {
                     <p>Credits - {course.credits}</p>
                     <p>{course.isProfessionalElective?'Professional Elective':'Free Elective'}</p>
                 </div>
+                <p className="course-desc-title">Course Objective</p>
+                {}
+                <p className="course-desc">{course.objective}</p>
             </div>
         </div>
     )
