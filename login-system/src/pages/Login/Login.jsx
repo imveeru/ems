@@ -53,8 +53,8 @@ function Login() {
                     <div className='input-group'>
                         <label className='input-label' htmlFor='password'>Password</label>
                         <input id='password' type={showPassword?'text':'password'} placeholder='•••••••••••••••' minLength='8' ref={passwordRef} className='input-box' required></input>
-                        {showPassword?<element className='show-password' onClick={handleShowPassword}><FiEyeOff/></element>:<element className='show-password' type='normal
-                        ' onClick={handleShowPassword}><FiEye/></element>}
+                        {showPassword?<element className='show-password' onClick={handleShowPassword}><FiEyeOff size={25}/></element>:<element className='show-password' type='normal
+                        ' onClick={handleShowPassword}><FiEye size={25}/></element>}
                     </div>
                     <div className='input-btn-group'>
                         <button className='login-btn' type='submit'>Log In</button>

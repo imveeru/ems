@@ -3,6 +3,7 @@ import './header.css'
 import {useAuth} from '../../context/AuthContext'
 import {useHistory} from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast';
+import {Link} from 'react-router-dom'
 
 function Header() {
 
@@ -27,7 +28,7 @@ function Header() {
     return (
         <div className='header'>
             <Toaster/>
-            <h2>Elective Management System</h2>
+            <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h2>Elective Management System</h2></Link>
             <button className='logout-btn' onClick={handleLogout}>Log Out</button>
         </div>
     )

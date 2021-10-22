@@ -13,6 +13,19 @@
   background-position: 50% 50%;
 }
 
+@media screen and (max-width: 1200px) {
+    .login-page{
+        grid-template-columns:0% 100% !important;
+    }
+    .login-img>img{
+        src:none;
+        position: relative;
+        width:0%;
+        display:none;
+        visibility: hidden;
+    }
+  }
+
 .login-form-box{
     height: 100vh;
     display: flex;
@@ -90,4 +103,11 @@
 
 .input-btn-group>Link{
     margin-top:10px;
+}
+
+.show-password{
+    position: relative;
+    left: 435px;
+    top:-35px;
+    cursor: pointer;
 }
