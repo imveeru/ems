@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Header from '../../components/Header/Header'
 import {db} from '../../firebase'
+import './Course.css'
 
 function Course(props) {
     console.log(props.match.params.courseId);
@@ -17,12 +18,20 @@ function Course(props) {
 
     useEffect(()=>{
         fetchUserData()
-    })
+    },[])
 
     return (
         <div>
             <Header/>
-            {course?'Irukku':'illa'}
+            {/* {course?'Irukku':'illa'} */}
+            <div className="course-container">
+                <p className="course-title">{course.title}</p>
+                <div className="course-spec">
+                    <p>{course.courseCode}</p>
+                    <p>Provided by - {course.dept} Dept.</p>
+                    <p>Credits - {course.credits}</p>
+                </div>
+            </div>
         </div>
     )
 }
