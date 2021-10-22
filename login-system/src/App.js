@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom'
 import { AuthProvider } from "./context/AuthContext"
 import PrivateRoute from './routes/PrivateRoute'
+import Course from './pages/Course/Course';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <div className="App">
           <Switch>
             <PrivateRoute exact path="/" component={Home}/>
+            <PrivateRoute path="/course/:courseId" component={Course}/>
             <Route path="/login" component={Login}/>
             <Route path="/forgot-password" component={ForgotPassword}/>
           </Switch>

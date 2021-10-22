@@ -1,5 +1,6 @@
 import React from 'react'
 import './ElectiveList.css'
+import {Link} from 'react-router-dom'
 
 function ElectiveList({electives}) {
     return (
@@ -10,9 +11,9 @@ function ElectiveList({electives}) {
                         <div key={elective.sem} className="previous-elective">
                             <div className="sem-name">Semester - {elective.sem}</div>
                             <div className="sem-list">
-                                <p className='elective' href={elective.elective_1===null?"#":"/"+elective.elective_1}>Elective 1 - {elective.elective_1===null?"No Elective":elective.elective_1}</p>
-                                <p className='elective'>Elective 2 - {elective.elective_2===null?"No Elective":elective.elective_2}</p>
-                                <p className='elective'>Elective 3 - {elective.elective_3===null?"No Elective":elective.elective_3}</p>
+                                <Link to={elective.elective_1===null?"#":"/course/"+elective.elective_1} style={{'textDecoration':'none','color':'black'}}><p className='elective'>Elective 1 - {elective.elective_1===null?"No Elective":elective.elective_1}</p></Link>
+                                <Link to={elective.elective_2===null?"#":"/course/"+elective.elective_2} style={{'textDecoration':'none','color':'black'}}><p className='elective'>Elective 2 - {elective.elective_2===null?"No Elective":elective.elective_2}</p></Link>
+                                <Link to={elective.elective_3===null?"#":"/course/"+elective.elective_3} style={{'textDecoration':'none','color':'black'}}><p className='elective'>Elective 3 - {elective.elective_3===null?"No Elective":elective.elective_3}</p></Link>
                             </div>
                         </div> 
                 ))}
