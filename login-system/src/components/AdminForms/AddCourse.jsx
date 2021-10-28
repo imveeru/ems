@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import { useForm } from "react-hook-form";
+import {db} from '../../firebase'
+import toast, { Toaster } from 'react-hot-toast';
 
 function AddCourse() {
 
@@ -7,11 +9,23 @@ function AddCourse() {
 
     const[formData,setFormData] = useState()
 
-    const onSubmit = (data)=>setFormData(data)
+    const onSubmit = (data)=>{
+        setFormData(data)
+        db.collection('courses').doc(data.courseCode).set(data)
+        .then(()=>{
+            toast.success('Course added successfully!')
+        })
+        .catch((err)=>{
+            console.error("Error Adding Document: " + err)
+            toast.error("Error Adding Document!")
+        })
+    }
+
 
 
     return (
         <div className="add-form">
+            <Toaster/>
             <h2>Add Course</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("title")} placeholder="Enter the coures title"/>
@@ -33,8 +47,8 @@ function AddCourse() {
                     <option value="ENG">ENG - English</option>
                     <option value="HUM">HUM - Humanites</option>
                 </select>
-                <input {...register("isProfessionalElective")} type='radio' id='Yes' name='isProfessionalElective' value='Yes'/>
-                <input {...register("isProfessionalElective")} type='radio' id='No' name='isProfessionalElective' value='No'/>
+                <input {...register("isProfessionalElective")} type='radio' id='Yes' name='isProfessionalElective' value={true}/>
+                <input {...register("isProfessionalElective")} type='radio' id='No' name='isProfessionalElective' value={false}/>
                 <textarea {...register("objective")} placeholder="Enter the course objective"/>
                 <button type="submit">Add Course</button>
             </form>
