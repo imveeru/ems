@@ -30,7 +30,7 @@ function Admin({userData}) {
                     </button>
                 </div>
                 <div className="admin-forms">
-                    {form==="au"?<AddUser/>:form==="ac"?<AddCourse/>:form==="as"?<AssignCourse/>:null}
+                    {form==="au"?<AddUser/>:form==="ac"?<AddCourse/>:form==="as"?<AssignCourse/>:<p>Choose an action!</p>}
                 </div>
             </div>
     )
