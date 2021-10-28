@@ -4,12 +4,16 @@ import {GrNotes,GrUserAdd,GrCompliance} from 'react-icons/gr'
 import './Admin.css'
 
 function Admin({userData}) {
+
+    const[]
+
+
     return (
             <div className="home-container">
                 <h1>Welcome {userData.name}!</h1>
                 <div className="admin-functions">
                     <button className="btn-add">
-                        <GrUserAdd style={{"marginRight":"10px"}}/>
+                        <GrUserAdd className='btn-icon' style={{"marginRight":"10px"}}/>
                         Add User
                     </button>
 
