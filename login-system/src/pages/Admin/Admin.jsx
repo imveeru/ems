@@ -9,18 +9,18 @@ function Admin({userData}) {
                 <h1>Welcome {userData.name}!</h1>
                 <div className="admin-functions">
                     <button className="btn-add">
-                        <GrUserAdd/>
+                        <GrUserAdd style={{"marginRight":"10px"}}/>
                         Add User
                     </button>
 
                     <button className="btn-add">
-                        <GrNotes/>
+                        <GrNotes style={{"marginRight":"10px"}}/>
                         Add Course
                     </button>
-                    
+
                     <button className="btn-add">
-                        <GrCompliance/>
-                        Assign Course
+                        <GrCompliance style={{"marginRight":"10px"}}/>
+                          Assign Course
                     </button>
                 </div>
             </div>
