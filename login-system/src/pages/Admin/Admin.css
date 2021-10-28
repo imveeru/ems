@@ -1,0 +1,11 @@
+.admin-functions{
+    font-family: Open Sans;
+    margin-top:15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-add{
+    font-size: 1.25em;
+    margin-right: 25px;
+}
