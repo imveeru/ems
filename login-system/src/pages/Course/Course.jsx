@@ -31,10 +31,9 @@ function Course(props) {
                     <p>{course.courseCode}</p>
                     <p>Provided by - {course.dept} Dept.</p>
                     <p>Credits - {course.credits}</p>
-                    <p>{course.isProfessionalElective?'Professional Elective':'Free Elective'}</p>
+                    <p>{course.isProfessionalElective==='yes'?'Professional Elective':'Free Elective'}</p>
                 </div>
                 <p className="course-desc-title">Course Objective</p>
-                {}
                 <p className="course-desc">{course.objective}</p>
             </div>
         </div>

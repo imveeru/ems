@@ -47,8 +47,18 @@ function AddCourse() {
                     <option value="ENG">ENG - English</option>
                     <option value="HUM">HUM - Humanites</option>
                 </select>
-                <input {...register("isProfessionalElective")} type='radio' id='Yes' name='isProfessionalElective' value={true}/>
-                <input {...register("isProfessionalElective")} type='radio' id='No' name='isProfessionalElective' value={false}/>
+
+                <p>is Professional Elective?
+                    <label html-for='yes'>
+                        <input {...register("isProfessionalElective")} type='radio' id='yes' name='isProfessionalElective' value='yes'/>
+                        Yes
+                    </label>
+                    <label html-for='no'>
+                        <input {...register("isProfessionalElective")} type='radio' id='no' name='isProfessionalElective' value='no'/>
+                        No
+                    </label>
+                </p>
+
                 <textarea {...register("objective")} placeholder="Enter the course objective"/>
                 <button type="submit">Add Course</button>
             </form>
