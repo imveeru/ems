@@ -4,6 +4,9 @@ function AddStudent() {
     return (
         <div>
             <h2>Student Details</h2>
+            <form>
+                
+            </form>
         </div>
     )
 }

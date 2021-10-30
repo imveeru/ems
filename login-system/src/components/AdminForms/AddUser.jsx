@@ -2,8 +2,7 @@ import React,{useState} from 'react'
 import {useForm} from 'react-hook-form'
 import AddStudent from './AddStudent'
 import AddFaculty from './AddFaculty'
-
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function AddUser() {
 
@@ -30,9 +29,10 @@ function AddUser() {
           }).then((data)=>{
             //console.log(data);
             setUid(data.uid);
-
+            toast.success('User added successfully. Enter the details by choosing the role.')
           }).catch((err)=>{
             console.log(err);
+            toast.error('Unexpected error while adding user.')
           })
     }
 
@@ -40,6 +40,7 @@ function AddUser() {
 
     return (
         <div className="add-form">
+            <Toaster/>
             <h2>Add User</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
             <input {...register("username")} placeholder="Enter the username" type="text"></input>
