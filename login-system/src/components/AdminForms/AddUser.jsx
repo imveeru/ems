@@ -2,44 +2,56 @@ import React,{useState} from 'react'
 import {useForm} from 'react-hook-form'
 import AddStudent from './AddStudent'
 import AddFaculty from './AddFaculty'
-import {getAuth} from "firebase/auth"
+
+
 
 function AddUser() {
 
-    const{ register, handleSubmit,watch } = useForm();
+    const{ register, handleSubmit } = useForm();
+
+    const{ register:register2, handleSubmit:handleSubmit2, watch:watch2 } = useForm();
 
     const[formData,setFormData] = useState({})
 
-    
+    const[uid,setUid] = useState()
 
     const onSubmit = (data)=>{
         setFormData(data)
-        // getAuth().createUser({
-        //     email:data.username+"@cb.students.amrita.edu",
-        //     password:data.password
-        // })
-        // .then((response)=> {
-        //     console.log("User Created Successfully!",response.uid);
-        // })
-        // .catch((error)=> {
-        //     console.error("Error Creating new user",error)
-        // });
+        //add user and return uid
+        fetch('/addUser',{
+            method:"POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+          }).then((response)=>{
+            if(response.status>=400){
+              throw new Error("Bad Response from server");
+            }
+            return response.json();
+          }).then((data)=>{
+            //console.log(data);
+            setUid(data.uid);
+
+          }).catch((err)=>{
+            console.log(err);
+          })
     }
 
-    const role=watch("role");
+    const role=watch2("role");
 
     return (
         <div className="add-form">
             <h2>Add User</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("usernameRef")} placeholder="Enter the username" type="text"></input>
+            <input {...register("username")} placeholder="Enter the username" type="text"></input>
             <input {...register("password")} placeholder="Enter the password" type="text"></input>
-            <select {...register("role")}>
-                <option value="">Select user role...</option>
-                <option value="student">Student</option>
-                <option value="faculty">Faculty</option>
-            </select>
             <button type="submit">Add user</button>
+            </form>
+            <form onSubmit={handleSubmit2(onSubmit)}>
+                <select {...register2("role")}>
+                    <option value="">Select user role...</option>
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty</option>
+                </select>
             </form>
             <p>{JSON.stringify(formData)}</p>
             {role==='student'?<AddStudent/>:role==='faculty'?<AddFaculty/>:null}
