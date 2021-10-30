@@ -20,7 +20,7 @@ function AddUser() {
         fetch('/addUser',{
             method:"POST",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(formData)
+            body: JSON.stringify(data)
           }).then((response)=>{
             if(response.status>=400){
               throw new Error("Bad Response from server");
@@ -55,7 +55,7 @@ function AddUser() {
                 </select>
             </form>
             <p>{JSON.stringify(formData)}</p>
-            {role==='student'?<AddStudent/>:role==='faculty'?<AddFaculty/>:null}
+            {role==='student'?<AddStudent uid={uid}/>:role==='faculty'?<AddFaculty uid={uid}/>:null}
         </div>
     )
 }
