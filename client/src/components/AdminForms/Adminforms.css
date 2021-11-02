@@ -33,5 +33,21 @@
     font-size:16px;
     font-family: Poppins;
     margin-top:15px;
+    margin-right: 15px;
+    margin-bottom:15px ;
     border: 1px solid rgba(0,0,0,0.5);
+}
+
+.year-input{
+    width:150px !important;
+}
+
+.form-header{
+    display: flex;
+}
+.role-form{
+    margin-left: 20px;
+}
+.role-form .select-btn{
+    margin-left:10px !important;
 }

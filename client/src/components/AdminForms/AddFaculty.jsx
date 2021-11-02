@@ -26,8 +26,8 @@ function AddStudent({uid}) {
             <Toaster/>
             <h2>Faculty Details</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name")} type="text" placeholder="Enter Name"></input>
-                <select {...register("grade")}>
+                <input {...register("name")} type="text" placeholder="Enter Name" className="input-box"></input>
+                <br/><select {...register("grade")} className="select-btn">
                     <option value="">Select the grade</option>
                     <option value="Chairperson">Chairperson</option>
                     <option value="Vice Chairperson">Vice Chairperson</option>
@@ -35,7 +35,7 @@ function AddStudent({uid}) {
                     <option value="Associate Professor">Associate Professor</option>
                     <option value="Senior Professor">Senior Professor</option>
                 </select>
-                <select {...register("dept")}>
+                <select {...register("dept")} className="select-btn">
                     <option value="">Select the department</option>
                     <option value="CSE">CSE - Computer Science and Engineering</option>
                     <option value="EEE">EEE - Electrical andd Electronics Engineering</option>
@@ -46,9 +46,9 @@ function AddStudent({uid}) {
                     <option value="HUM">HUM - Humanites</option>
                 </select>
                 <input {...register("role")} value="faculty" type="hidden"></input>
-                <button type="submit">Save Details</button>
+                <br/><button type="submit" className="add-btn">Save Details</button>
             </form>
-            {<p>{JSON.stringify(formData)}</p>}
+            {/* {<p>{JSON.stringify(formData)}</p>} */}
         </div>
     )
 }
