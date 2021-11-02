@@ -5,7 +5,7 @@ import {db} from '../../firebase'
 
 function AddStudent({uid}) {
 
-    const{ register, handleSubmit } = useForm();
+    const{ register, handleSubmit,reset } = useForm();
 
     const[formData,setFormData] = useState({})
 
@@ -14,6 +14,7 @@ function AddStudent({uid}) {
         db.collection('users').doc(uid).set(data)
         .then(()=>{
             toast.success('Details saved successfully!')
+            reset();
         })
         .catch((err)=>{
             console.error("Error Adding Document: " + err)
@@ -23,6 +24,7 @@ function AddStudent({uid}) {
 
     return (
         <div>
+            <Toaster/>
             <h2>Student Details</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("name")} type="text" placeholder="Enter Name"></input>
@@ -62,7 +64,7 @@ function AddStudent({uid}) {
                     <option value="E">E</option>
                     <option value="F">F</option>
                 </select>
-                <input {...register("yearJoined")} type="number" placeHolder="YYYY" maxlength="4"></input>
+                <input {...register("yearJoined")} type="number" placeholder="YYYY" maxLength="4" min="2015" max={new Date().getFullYear()} />
                 <input {...register("role")} value="student" type="hidden"></input>
                 <button type="submit">Save Details</button>
             </form>

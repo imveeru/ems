@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 function AddUser() {
 
-    const{ register, handleSubmit } = useForm();
+    const{ register, handleSubmit} = useForm();
 
     const{ register:register2, handleSubmit:handleSubmit2, watch:watch2 } = useForm();
 
@@ -23,17 +23,22 @@ function AddUser() {
             body: JSON.stringify(data)
           }).then((response)=>{
             if(response.status>=400){
+              if(response.status===401){
+                throw new Error('User already exists')
+              }
               throw new Error("Bad Response from server");
             }
             return response.json();
           }).then((data)=>{
-            //console.log(data);
+            console.log(data);
             setUid(data.uid);
             toast.success('User added successfully. Enter the details by choosing the role.')
+            //reset();
           }).catch((err)=>{
-            console.log(err);
-            toast.error('Unexpected error while adding user.')
+            //console.log(err.message);
+            toast.error(err.message)
           })
+        
     }
 
     const role=watch2("role");
@@ -54,7 +59,7 @@ function AddUser() {
                     <option value="faculty">Faculty</option>
                 </select>
             </form>
-            <p>{JSON.stringify(formData)}</p>
+            {/* <p>{JSON.stringify(formData)}</p> */}
             {role==='student'?<AddStudent uid={uid}/>:role==='faculty'?<AddFaculty uid={uid}/>:null}
         </div>
     )

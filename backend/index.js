@@ -34,6 +34,7 @@ app.post('/addUser',urlencodedParser,(req,res) => {
     })
     .catch((error) => {
         console.log('Error creating new user:', error);
+        res.status(401).json(error)
     });
 })
 
