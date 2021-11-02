@@ -27,7 +27,7 @@ function AddStudent({uid}) {
             <Toaster/>
             <h2>Student Details</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name")} type="text" placeholder="Enter Name"></input>
+                <input {...register("name")} type="text" placeholder="Enter Name" className="input-box"></input>
                 <input {...register("regNo")} type="text" placeholder="Enter register number"></input>
                 <select {...register("program")}>
                     <option value="">Select the program</option>
