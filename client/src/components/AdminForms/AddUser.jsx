@@ -54,6 +54,7 @@ function AddUser() {
             <br/><button type="submit" className="add-btn">Add user</button>
             </form>
             <form onSubmit={handleSubmit2(onSubmit)}>
+                <span className="labels">Role </span>
                 <select {...register2("role") } className="select-btn">
                     <option value="">Select user role...</option>
                     <option value="student">Student</option>

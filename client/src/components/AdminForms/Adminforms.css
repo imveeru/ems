@@ -8,6 +8,11 @@
     margin-bottom:15px ;
 }
 
+.labels{
+    font-size:20px;
+    font-weight: 600;
+}
+
 .add-btn{
     /* margin-top:15px; */
     background:rgba(46,106,218);
@@ -26,7 +31,6 @@
     padding:10px;
     border-radius:6px;
     font-size:16px;
-    font-weight: 600;
     font-family: Poppins;
     margin-top:15px;
     border: 1px solid rgba(0,0,0,0.5);

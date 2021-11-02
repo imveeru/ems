@@ -28,13 +28,13 @@ function AddStudent({uid}) {
             <h2>Student Details</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("name")} type="text" placeholder="Enter Name" className="input-box"></input>
-                <input {...register("regNo")} type="text" placeholder="Enter register number"></input>
-                <select {...register("program")}>
+                <input {...register("regNo")} type="text" placeholder="Enter register number" className="input-box"></input>
+                <select {...register("program")} className="select-btn">
                     <option value="">Select the program</option>
                     <option value="BTech">BTech</option>
                     <option value="BSc">BSc.</option>
                 </select>
-                <select {...register("branch")}>
+                <select {...register("branch")} className="select-btn">
                     <option value="">Select the department</option>
                     <option value="CSE">CSE - Computer Science and Engineering</option>
                     <option value="EEE">EEE - Electrical andd Electronics Engineering</option>
@@ -44,7 +44,7 @@ function AddStudent({uid}) {
                     <option value="ENG">ENG - English</option>
                     <option value="HUM">HUM - Humanites</option>
                 </select>
-                <select {...register("currentSem")}>
+                <select {...register("currentSem")} className="select-btn">
                     <option value="">Select the semester</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -55,7 +55,7 @@ function AddStudent({uid}) {
                     <option value="7">7</option>
                     <option value="8">8</option>
                 </select>
-                <select {...register("section")}>
+                <select {...register("section")} className="select-btn">
                     <option value="">Select the section</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -64,9 +64,9 @@ function AddStudent({uid}) {
                     <option value="E">E</option>
                     <option value="F">F</option>
                 </select>
-                <input {...register("yearJoined")} type="number" placeholder="YYYY" maxLength="4" min="2015" max={new Date().getFullYear()} />
+                <input {...register("yearJoined")} type="number" placeholder="YYYY" maxLength="4" min="2015" max={new Date().getFullYear()} className="input-box" />
                 <input {...register("role")} value="student" type="hidden"></input>
-                <button type="submit">Save Details</button>
+                <br/><button type="submit" className="add-btn">Save Details</button>
             </form>
             {/* {<p>{JSON.stringify(formData)}</p>} */}
         </div>
