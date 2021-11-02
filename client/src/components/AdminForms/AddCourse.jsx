@@ -28,16 +28,10 @@ function AddCourse() {
             <Toaster/>
             <h2>Add Course</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("title")} placeholder="Enter the coures title"/>
-                <input {...register("courseCode")} placeholder="Enter the coures code"/>
-                <select {...register("credits")}>
-                    <option value="">Select a credit</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-                <select {...register("dept")}>
+                <input {...register("title")} placeholder="Enter the coures title" className="input-box"></input>
+                <input {...register("courseCode")} placeholder="Enter the coures code" className="input-box"/>
+                <br/>
+                <select {...register("dept")} className="select-btn">
                     <option value="">Select the department</option>
                     <option value="CSE">CSE - Computer Science and Engineering</option>
                     <option value="EEE">EEE - Electrical andd Electronics Engineering</option>
@@ -47,7 +41,14 @@ function AddCourse() {
                     <option value="ENG">ENG - English</option>
                     <option value="HUM">HUM - Humanites</option>
                 </select>
-
+                <br/>
+                <select {...register("credits")} className="select-btn">
+                    <option value="">Select the credits</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
                 <p>is Professional Elective?
                     <label html-for='yes'>
                         <input {...register("isProfessionalElective")} type='radio' id='yes' name='isProfessionalElective' value='yes'/>
@@ -59,10 +60,10 @@ function AddCourse() {
                     </label>
                 </p>
 
-                <textarea {...register("objective")} placeholder="Enter the course objective"/>
-                <button type="submit">Add Course</button>
+                <textarea {...register("objective")} placeholder="Enter the course objective" className="input-txtbox"/>
+                <br/><button type="submit" className="add-btn">Add Course</button>
             </form>
-            <p>{JSON.stringify(formData)}</p>
+            {/* <p>{JSON.stringify(formData)}</p> */}
         </div>
     )
 }
