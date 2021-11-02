@@ -8,6 +8,9 @@ function Faculty({userData}) {
                     <p>{userData.dept}</p>
                     <p>{userData.grade}</p>
                 </div>
+                <div className="course-assigned">
+
+                </div>
             </div>
     )
 }
