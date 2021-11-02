@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 function AddUser() {
 
-    const{ register, handleSubmit} = useForm();
+    const{ register, handleSubmit,reset} = useForm();
 
     const{ register:register2, handleSubmit:handleSubmit2, watch:watch2 } = useForm();
 
@@ -33,7 +33,7 @@ function AddUser() {
             console.log(data);
             setUid(data.uid);
             toast.success('User added successfully. Enter the details by choosing the role.')
-            //reset();
+            reset();
           }).catch((err)=>{
             //console.log(err.message);
             toast.error(err.message)

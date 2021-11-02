@@ -68,7 +68,7 @@ function AddStudent({uid}) {
                 <input {...register("role")} value="student" type="hidden"></input>
                 <button type="submit">Save Details</button>
             </form>
-            {<p>{JSON.stringify(formData)}</p>}
+            {/* {<p>{JSON.stringify(formData)}</p>} */}
         </div>
     )
 }
