@@ -14,8 +14,20 @@
     border:none;
     padding:10px;
     border-radius:6px;
-    font-size:20px;
+    font-size:16px;
     color:#fff;
     font-weight: 600;
     font-family: Poppins;
+}
+
+.select-btn{
+    background:none;
+    border:none;
+    padding:10px;
+    border-radius:6px;
+    font-size:16px;
+    font-weight: 600;
+    font-family: Poppins;
+    margin-top:15px;
+    border: 1px solid rgba(0,0,0,0.5);
 }
