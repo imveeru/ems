@@ -41,6 +41,16 @@ function Faculty({userData}) {
                         <p>{assignedCourse.faculty}</p>
                         <p>Max Sots : {assignedCourse.maxLimit}</p>
                         <p>Remaining Slots : {assignedCourse.maxLimit-assignedCourse.studentList.length}</p>
+                        <table>
+                            <tr>
+                                <th>Student Roll Number</th>
+                            </tr>
+                            {assignedCourse.studentList.map((student)=>(
+                                <tr>
+                                    <td>{student}</td>
+                                </tr>
+                            ))}
+                        </table>
                         </div>
                     ))}
                 </div>
