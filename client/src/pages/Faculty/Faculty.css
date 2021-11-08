@@ -8,6 +8,9 @@
     border-radius: 15px;
     margin: 15px 0;
     width:50%;
+    display:flex;
+    align-items: center;
+    
 }
 
 table,th,td{
@@ -21,5 +24,6 @@ table,th,td{
 }
 
 .progress-bar{
-    height:150px;
+    height:120px;
+    width:120px !important;
 }

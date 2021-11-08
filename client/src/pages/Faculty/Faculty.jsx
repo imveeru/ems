@@ -40,9 +40,7 @@ function Faculty({userData}) {
                 <div className="course-assigned">
                     {assignedCourses.map((assignedCourse)=>(
                         <div className="assigned-course">
-                        <Link to={"/course/"+assignedCourse.courseCode} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
-                        <p>{assignedCourse.batch} Batch - {assignedCourse.dept} Dept. - Semester {assignedCourse.sem}</p>
-                        <p>{assignedCourse.faculty}</p>
+                        
                         <CircularProgressbar
                             value={parseInt(assignedCourse.studentList.length)}
                             text={`${parseInt(assignedCourse.maxLimit)-parseInt(assignedCourse.studentList.length)}/${assignedCourse.maxLimit}`}
@@ -57,8 +55,15 @@ function Faculty({userData}) {
                             maxValue={parseInt(assignedCourse.maxLimit)}
                             className='progress-bar'
                         ></CircularProgressbar>
-                        <p>Max Sots : {assignedCourse.maxLimit}</p>
-                        <p>Remaining Slots : {assignedCourse.maxLimit-assignedCourse.studentList.length}</p>
+
+                        <Link to={"/course/"+assignedCourse.courseCode} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
+                        <p>{assignedCourse.batch} Batch - {assignedCourse.dept} Dept. - Semester {assignedCourse.sem}</p>
+                        
+                        {/* <p>{assignedCourse.faculty}</p> */}
+                        
+                        {/* <p>Max Sots : {assignedCourse.maxLimit}</p>
+                        <p>Remaining Slots : {assignedCourse.maxLimit-assignedCourse.studentList.length}</p> */}
+
                         <table className="studentList">
                             <tr>
                                 <th>Student Roll Number</th>
