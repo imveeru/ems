@@ -48,14 +48,14 @@ function AssignCourse() {
 
     const onSubmit = (data)=>{
         setFormData(data)
-        // db.collection('electives').doc().set(data)
-        // .then(()=>{
-        //     toast.success('Course assigned successfully!')
-        // })
-        // .catch((err)=>{
-        //     console.error("Error Adding Document: " + err)
-        //     toast.error("Error assigning course!")
-        // })
+        db.collection('electives').doc().set(data)
+        .then(()=>{
+            toast.success('Course assigned successfully!')
+        })
+        .catch((err)=>{
+            console.error("Error Adding Document: " + err)
+            toast.error("Error assigning course!")
+        })
     }
 
     // const maxLimitNum=watch("maxLimit");

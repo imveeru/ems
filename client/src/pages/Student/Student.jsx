@@ -1,5 +1,5 @@
 import React,{ useState,useEffect} from 'react'
-//import { getDocs, collection,query,orderBy,onSnapshot } from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import {db} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
 
@@ -9,7 +9,11 @@ function Student({userData}) {
 
     const [electives,setElectives]=useState([]);
 
+    const[assignedCourses,setAssignedCourses]= useState([])
+
     const {currentUser}=useAuth()
+
+    const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
     const fetchUserData=async()=>{
         //const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
@@ -19,16 +23,17 @@ function Student({userData}) {
             electiveList.splice(0,electiveList.length)
             snapDoc.forEach((doc)=>{electiveList.push(doc.data())})
         })
-        //const docsSnap = await getDocs(q)
-        //console.log("5th Sem - ",docsSnap.docs[4].data())
-
-        
-        //docsSnap.docs.forEach((docs=>electiveList.push(docs.data())))
-        // docsSnap.docs.onSnapshot((snapDoc)=>snapDoc.forEach((doc)=>{electiveList.push(doc.data())}))
-        //docsSnap.docs.forEach((docs=>console.log(docs.data())))
-        //console.log(electiveList)
-        //const electivesList=[...electives,electiveList]
         setElectives(electiveList)
+
+        // fetch elective choices
+        const assignedCourse = [];
+        onSnapshot(assignedCourseQuery, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                assignedCourse.push(doc.data());
+            })
+        })
+        console.log(assignedCourse);
+        //setAssignedCourses(assignedCourse);
     }
 
     useEffect(()=>{
