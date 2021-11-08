@@ -1,6 +1,7 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import {db} from '../../firebase'
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import toast, { Toaster } from 'react-hot-toast';
 
 function AssignCourse() {
@@ -8,9 +9,42 @@ function AssignCourse() {
 
     const[formData,setFormData] = useState()
 
-    const[courseCodes,setCourseCodes] = useState()
+    const[courseCodes,setCourseCodes] = useState([])
 
-    const[facultyNames,setFacultyNames] = useState()
+    const[facultyNames,setFacultyNames] = useState([])
+
+    const facultyQuery = query(collection(db, "users"), where("role", "==", "faculty"));
+
+    const courseCodeQuery = query(collection(db, "courses"));
+
+    const fetchListData=async()=>{
+
+        //fetch facultyNameList
+        onSnapshot(facultyQuery, (querySnapshot) => {
+            const facultyNameList = [];
+            querySnapshot.forEach((doc) => {
+                facultyNameList.push(doc.data());
+            });
+    
+            //console.log(facultyNameList);
+            setFacultyNames(facultyNameList);
+        });
+
+        // fetch course codes
+        onSnapshot(courseCodeQuery, (querySnapshot) => {
+            const courseCodeList = [];
+            querySnapshot.forEach((doc) => {
+                courseCodeList.push(doc.data());
+            });
+    
+            //console.log(courseCodeList);
+            setCourseCodes(courseCodeList);
+        });
+    }
+    
+    useEffect(()=>{
+        fetchListData();
+    },[])
 
     const onSubmit = (data)=>{
         setFormData(data)
@@ -34,8 +68,11 @@ function AssignCourse() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("courseCode")} placeholder="Enter the coures code" className="admin-input-box" list='courseCodes'></input>
                 <datalist id="courseCodes">
-                    <option value="aaa"></option>
-                    <option value="bbb"></option>
+                    {
+                        courseCodes.map(courseCode=>(
+                            <option key={courseCode.courseCode} value={courseCode.courseCode}></option>
+                        ))
+                    }
                 </datalist>
                 <br/>
                 <select {...register("dept")} className="select-btn">
@@ -68,7 +105,14 @@ function AssignCourse() {
                     <option value="7">7</option>
                     <option value="8">8</option>
                 </select>
-                <input {...register("faculty")} placeholder="Enter the faculty name" className="admin-input-box"></input>
+                <input {...register("faculty")} placeholder="Enter the faculty name" className="admin-input-box" list="facultyNames"></input>
+                <datalist id="facultyNames">
+                    {
+                        facultyNames.map(facultyName=>(
+                            <option key={facultyName.name} value={facultyName.name}></option>
+                        ))
+                    }
+                </datalist>
                 <br/>
                 <select {...register("maxLimit")} className="select-btn">
                     <option value="">Select the maximum number of slot</option>
