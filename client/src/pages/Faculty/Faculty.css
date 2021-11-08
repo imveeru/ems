@@ -22,6 +22,8 @@ table,th,td{
 }
 
 .studentList{
+    margin: 30px;
+    flex-grow:1;
     align-self: flex-end;
     border-collapse: collapse;
 }

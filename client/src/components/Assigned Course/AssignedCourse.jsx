@@ -4,14 +4,13 @@ import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
 import {MdExpandMore,MdExpandLess} from 'react-icons/md'
 
-function AssignedCourse({assignedCourses}) {
+function AssignedCourse({assignedCourse}) {
 
     const [expanded, setExpanded] = useState(false)
 
     return (
         <div className="course-assigned">
-                    {assignedCourses.map((assignedCourse)=>(
-                        <div className="assigned-course">
+                        <div  key={assignedCourse.courseCode} className="assigned-course">
                         
                         <CircularProgressbar
                             value={parseInt(assignedCourse.studentList.length)}
@@ -33,7 +32,7 @@ function AssignedCourse({assignedCourses}) {
                             <p>{assignedCourse.batch} Batch - {assignedCourse.dept} Dept. - Semester {assignedCourse.sem}</p>
                         </div>
                         
-                        <button className="expand-btn">
+                        <button className="expand-btn" onClick={() => setExpanded(!expanded)}>
                               {expanded?<MdExpandLess/>:<MdExpandMore/>}
                         </button>
                         {/* <p>{assignedCourse.faculty}</p> */}
@@ -41,7 +40,7 @@ function AssignedCourse({assignedCourses}) {
                         {/* <p>Max Sots : {assignedCourse.maxLimit}</p>
                         <p>Remaining Slots : {assignedCourse.maxLimit-assignedCourse.studentList.length}</p> */}
 
-                            {/* <table className="studentList">
+                            {expanded&&(<table className="studentList">
                                 <tr>
                                     <th>Student Roll Number</th>
                                 </tr>
@@ -50,9 +49,9 @@ function AssignedCourse({assignedCourses}) {
                                         <td>{student}</td>
                                     </tr>
                                 ))}
-                            </table> */}
+                            </table>)}
                         </div>
-                    ))}
+                   
                 </div>
     )
 }
