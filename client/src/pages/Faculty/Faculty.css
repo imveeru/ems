@@ -1,0 +1,25 @@
+.course-assigned{
+    margin-top:30px;
+}
+
+.assigned-course{
+    background-color:#fff;
+    padding:10px 20px ;
+    border-radius: 15px;
+    margin: 15px 0;
+    width:50%;
+}
+
+table,th,td{
+    border:1px solid #000;
+    padding:5px;
+    margin-bottom: 10px;
+}
+
+.studentList{
+    border-collapse: collapse;;
+}
+
+.progress-bar{
+    height:150px;
+}
