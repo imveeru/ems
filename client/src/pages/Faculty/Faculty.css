@@ -4,13 +4,15 @@
 
 .assigned-course{
     background-color:#fff;
-    padding:10px 20px ;
+    padding:25px 10px ;
     border-radius: 15px;
     margin: 15px 0;
-    width:50%;
+    width:35%;
+    overflow:hidden;
     display:flex;
     align-items: center;
-    
+    justify-content: space-around;
+    flex-wrap: wrap; 
 }
 
 table,th,td{
@@ -20,10 +22,42 @@ table,th,td{
 }
 
 .studentList{
-    border-collapse: collapse;;
+    align-self: flex-end;
+    border-collapse: collapse;
+}
+
+.expand-btn{
+    border:none;
+    background:none;
+    padding:5px;
+    border-radius:60%;
+    font-size:2em;
+}
+
+.expand-btn:hover{
+    cursor: pointer;
+    background: rgb(248, 248, 248);
+}
+
+.assigned-course-details{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-content:flex-start;
+    flex-wrap: wrap;
+
+}
+
+.assigned-course-title{
+    font-size:2em;
+    font-weight: 600;
+}
+
+.assigned-course-title>p{
+    margin:0;
 }
 
 .progress-bar{
-    height:120px;
-    width:120px !important;
+    height:110px;
+    width:110px !important;
 }
