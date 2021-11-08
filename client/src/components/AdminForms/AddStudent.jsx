@@ -27,8 +27,8 @@ function AddStudent({uid}) {
             <Toaster/>
             <h2>Student Details</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name")} type="text" placeholder="Enter Name" className="input-box"></input>
-                <input {...register("regNo")} type="text" placeholder="Enter register number" className="input-box"></input>
+                <input {...register("name")} type="text" placeholder="Enter Name" className="admin-input-box"></input>
+                <input {...register("regNo")} type="text" placeholder="Enter register number" className="admin-input-box"></input>
                 <br/><select {...register("program")} className="select-btn">
                     <option value="">Select the program</option>
                     <option value="BTech">BTech</option>
@@ -64,7 +64,7 @@ function AddStudent({uid}) {
                     <option value="E">E</option>
                     <option value="F">F</option>
                 </select>
-                <input {...register("yearJoined")} type="number" placeholder="YYYY" maxLength="4" min="2015" max={new Date().getFullYear()} className="input-box year-input" />
+                <input {...register("yearJoined")} type="number" placeholder="YYYY" maxLength="4" min="2015" max={new Date().getFullYear()} className="admin-input-box year-input" />
                 <input {...register("role")} value="student" type="hidden"></input>
                 <br/><button type="submit" className="add-btn">Save Details</button>
             </form>

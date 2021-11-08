@@ -60,8 +60,8 @@ function AddUser() {
             </div>
             
             <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("username")} placeholder="Enter the username" type="text" className="input-box"></input>
-            <input {...register("password")} placeholder="Enter the password" type="text" className="input-box"></input>
+            <input {...register("username")} placeholder="Enter the username" type="text" className="admin-input-box"></input>
+            <input {...register("password")} placeholder="Enter the password" type="text" className="admin-input-box"></input>
             <br/><button type="submit" className="add-btn">Add user</button>
             </form>
             {/* <p>{JSON.stringify(formData)}</p> */}

@@ -26,7 +26,7 @@ function AddStudent({uid}) {
             <Toaster/>
             <h2>Faculty Details</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name")} type="text" placeholder="Enter Name" className="input-box"></input>
+                <input {...register("name")} type="text" placeholder="Enter Name" className="admin-input-box"></input>
                 <br/><select {...register("grade")} className="select-btn">
                     <option value="">Select the grade</option>
                     <option value="Chairperson">Chairperson</option>

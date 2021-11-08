@@ -27,8 +27,8 @@ function AssignCourse() {
             <Toaster/>
             <h2>Add Course</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("title")} placeholder="Enter the coures title" className="input-box"></input>
-                <input {...register("courseCode")} placeholder="Enter the coures code" className="input-box"/>
+                <input {...register("title")} placeholder="Enter the coures title" className="admin-input-box"></input>
+                <input {...register("courseCode")} placeholder="Enter the coures code" className="admin-input-box"/>
                 <br/>
                 <select {...register("dept")} className="select-btn">
                     <option value="">Select the department</option>
