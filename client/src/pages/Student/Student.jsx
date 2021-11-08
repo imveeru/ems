@@ -52,6 +52,7 @@ function Student({userData}) {
                     <p>Semester - {userData.currentSem}</p>
                 </div>
                 <ElectiveList electives={electives}/>
+                
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )
