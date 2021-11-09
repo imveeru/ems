@@ -53,7 +53,7 @@ function Student({userData}) {
                 </div>
                 <ElectiveList electives={electives}/>
                 <div className="elective-choices-container">
-                    <h2>Elective courses for Semester {userData.currentSem}</h2>
+                    <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
                     <div className="elective-choices">
                     {
                         assignedCourses.map((assignedCourse,index)=>(

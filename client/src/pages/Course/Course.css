@@ -50,4 +50,17 @@
 
 .course-desc{
     font-size: 1.2em;
+    width:70%;
+}
+
+.back-btn{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    background:#fff;
+    width:90px;
+    margin-left: 100px;
+    margin-top: 20px;
+    padding:2px;
+    border-radius:10px;
 }

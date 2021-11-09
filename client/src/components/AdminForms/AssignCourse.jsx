@@ -116,7 +116,7 @@ function AssignCourse() {
                 <br/>
                 <select {...register("maxLimit")} className="select-btn">
                     <option value="">Select the maximum number of slot</option>
-                    <option value={15}>15</option>
+                    <option value="15">15</option>
                     <option value="30">30</option>
                     <option value="45">45</option>
                     <option value="60">60</option>
@@ -125,7 +125,7 @@ function AssignCourse() {
                 <input {...register(`studentList.${0}`)} type="hidden"></input>
                 <br/><button type="submit" className="add-btn">Assign Course</button>
             </form>
-            <p>{JSON.stringify(formData)}</p>
+            {/* <p>{JSON.stringify(formData)}</p> */}
         </div>
     )
 }

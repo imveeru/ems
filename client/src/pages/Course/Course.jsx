@@ -1,7 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import Header from '../../components/Header/Header'
+import {Link} from 'react-router-dom'
 import {db} from '../../firebase'
 import './Course.css'
+import {IoMdArrowRoundBack} from 'react-icons/io'
 
 function Course(props) {
     console.log(props.match.params.courseId);
@@ -24,18 +26,26 @@ function Course(props) {
     return (
         <div>
             <Header/>
-            {/* {course?'Irukku':'illa'} */}
-            <div className="course-container">
-                <p className="course-title">{course.title}</p>
-                <div className="course-spec">
-                    <p>{course.courseCode}</p>
-                    <p>Provided by - {course.dept} Dept.</p>
-                    <p>Credits - {course.credits}</p>
-                    <p>{course.isProfessionalElective==='yes'?'Professional Elective':'Free Elective'}</p>
+            <div className="back-btn">
+                    <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h3><IoMdArrowRoundBack/>   Back</h3></Link>
                 </div>
-                <p className="course-desc-title">Course Objective</p>
-                <p className="course-desc">{course.objective}</p>
-            </div>
+            {course?
+                <div className="course-container">
+                    <p className="course-title">{course.title}</p>
+                    <div className="course-spec">
+                        <p>{course.courseCode}</p>
+                        <p>Provided by - {course.dept} Dept.</p>
+                        <p>Credits - {course.credits}</p>
+                        <p>{course.isProfessionalElective==='yes'?'Professional Elective':'Free Elective'}</p>
+                    </div>
+                    <p className="course-desc-title">Course Objective</p>
+                    <p className="course-desc">{course.objective}</p>
+                </div>
+            :
+               <div className="course-container">
+                   <p className="course-title">😢 Oops! Course details not found.</p>
+               </div> 
+            }
         </div>
     )
 }

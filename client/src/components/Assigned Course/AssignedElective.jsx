@@ -8,10 +8,12 @@ function AssignedElective({assignedCourse}) {
     return (
         <div>
             <div className="assigned-elective">
-
+                    <form>
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+                    </form>
                     <CircularProgressbar
-                            value={parseInt(assignedCourse.studentList.length)}
-                            text={`${parseInt(assignedCourse.maxLimit)-parseInt(assignedCourse.studentList.length)}/${assignedCourse.maxLimit}`}
+                            value={parseInt(assignedCourse.studentList.length)-1}
+                            text={`${parseInt(parseInt(assignedCourse.maxLimit)-parseInt(assignedCourse.studentList.length)+1)}/${assignedCourse.maxLimit}`}
                             styles={buildStyles({
                                 textSize: "14px",
                                 pathColor: 'rgba(46,106,218)',
