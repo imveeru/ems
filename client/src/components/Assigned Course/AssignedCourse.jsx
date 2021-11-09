@@ -10,11 +10,11 @@ function AssignedCourse({assignedCourse}) {
 
     return (
         <div className="course-assigned">
-                        <div  key={assignedCourse.courseCode} className="assigned-course">
+                    <div  key={assignedCourse.courseCode} className="assigned-course">
                         
                         <CircularProgressbar
-                            value={parseInt(assignedCourse.studentList.length)}
-                            text={`${parseInt(assignedCourse.maxLimit)-parseInt(assignedCourse.studentList.length)}/${assignedCourse.maxLimit}`}
+                            value={parseInt(assignedCourse.studentList.length)-1}
+                            text={`${parseInt(parseInt(assignedCourse.maxLimit)-parseInt(assignedCourse.studentList.length)+1)}/${assignedCourse.maxLimit}`}
                             styles={buildStyles({
                                 textSize: "14px",
                                 pathColor: 'rgba(46,106,218)',
@@ -35,10 +35,7 @@ function AssignedCourse({assignedCourse}) {
                         <button className="expand-btn" onClick={() => setExpanded(!expanded)}>
                               {expanded?<MdExpandLess/>:<MdExpandMore/>}
                         </button>
-                        {/* <p>{assignedCourse.faculty}</p> */}
-                        
-                        {/* <p>Max Sots : {assignedCourse.maxLimit}</p>
-                        <p>Remaining Slots : {assignedCourse.maxLimit-assignedCourse.studentList.length}</p> */}
+                        <br/>
 
                             {expanded&&(<table className="studentList">
                                 <tr>
@@ -50,9 +47,10 @@ function AssignedCourse({assignedCourse}) {
                                     </tr>
                                 ))}
                             </table>)}
-                        </div>
+
+                    </div>
                    
-                </div>
+            </div>
     )
 }
 
