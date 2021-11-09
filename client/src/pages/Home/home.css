@@ -46,3 +46,15 @@ h1{
     background: rgba(255, 249, 193, 0.5);
     color:rgb(190, 173, 22);
 }
+
+.elective-choices-container{
+    background-color:#fff;
+    padding:20px;
+    margin:25px 0px;
+    border-radius: 10px;
+}
+
+.elective-choices{
+    display: flex;
+    gap: 40px;
+}

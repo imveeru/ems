@@ -52,11 +52,16 @@ function Student({userData}) {
                     <p>Semester - {userData.currentSem}</p>
                 </div>
                 <ElectiveList electives={electives}/>
-                {
-                    assignedCourses.map((assignedCourse,index)=>(
-                        <AssignedElective key={index} assignedCourse={assignedCourse}></AssignedElective>
-                    ))
-                }
+                <div className="elective-choices-container">
+                    <h2>Elective courses for Semester {userData.currentSem}</h2>
+                    <div className="elective-choices">
+                    {
+                        assignedCourses.map((assignedCourse,index)=>(
+                            <AssignedElective key={index} assignedCourse={assignedCourse}></AssignedElective>
+                        ))
+                    }
+                    </div>
+                </div>
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )

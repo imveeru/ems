@@ -1,13 +1,10 @@
-.course-assigned{
-    margin-top:30px;
-}
 
 .assigned-elective{
-    background-color:#fff;
-    padding:25px 10px ;
+    background-color:#fdfdfd;
+    padding:25px 20px ;
     border-radius: 15px;
     margin: 15px 0;
-    width:35%;
+    /* width:35%; */
     overflow:hidden;
     display:flex;
     align-items: center;
@@ -22,10 +19,11 @@
     align-content:flex-start;
     flex-wrap: wrap;
     margin-left: 60px;
+    margin-right:40px;
 }
 
 .elective-progress-bar{
     height:110px;
     width:110px !important;
-    margin-left: 60px;
+    margin-left: 20px;
 }

@@ -6,7 +6,7 @@ import './AssignedElective.css'
 
 function AssignedElective({assignedCourse}) {
     return (
-        <div className="course-assigned">
+        <div>
             <div className="assigned-elective">
 
                     <CircularProgressbar
