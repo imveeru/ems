@@ -2,11 +2,12 @@ import React from 'react'
 import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
+import './AssignedElective.css'
 
 function AssignedElective({assignedCourse}) {
     return (
         <div className="course-assigned">
-            <div className="assigned-course">
+            <div className="assigned-elective">
 
                     <CircularProgressbar
                             value={parseInt(assignedCourse.studentList.length)}
@@ -20,10 +21,10 @@ function AssignedElective({assignedCourse}) {
                             strokeWidth={15}
                             minValue={0}
                             maxValue={parseInt(assignedCourse.maxLimit)}
-                            className='progress-bar'
+                            className='elective-progress-bar'
                     ></CircularProgressbar>
 
-                    <div className="assigned-course-details">
+                    <div className="assigned-elective-details">
                         <Link className="assigned-course-title" to={"/course/"+assignedCourse.courseCode} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
                         <p>Faculty - <strong>{assignedCourse.faculty}</strong></p>
                     </div>

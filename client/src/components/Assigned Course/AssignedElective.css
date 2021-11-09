@@ -2,7 +2,7 @@
     margin-top:30px;
 }
 
-.assigned-course{
+.assigned-elective{
     background-color:#fff;
     padding:25px 10px ;
     border-radius: 15px;
@@ -11,6 +11,21 @@
     overflow:hidden;
     display:flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap; 
+}
+
+.assigned-elective-details{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-content:flex-start;
+    flex-wrap: wrap;
+    margin-left: 60px;
+}
+
+.elective-progress-bar{
+    height:110px;
+    width:110px !important;
+    margin-left: 60px;
 }
