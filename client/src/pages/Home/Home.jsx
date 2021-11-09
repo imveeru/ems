@@ -21,8 +21,6 @@ function Home() {
         await res.onSnapshot((doc)=>{
             setUserData(doc.data())
         })
-        //const userDocRef=res.collection('electives').doc()
-        //console.log(userDocRef);
     }
 
     useEffect(()=>{
