@@ -34,7 +34,6 @@ function Faculty({userData}) {
                     <p>{userData.dept}</p>
                     <p>{userData.grade}</p>
                 </div>
-                
                 {
                     assignedCourses.map(assignedCourse=>(
                         <AssignedCourse key={assignedCourse.courseCode} assignedCourse={assignedCourse}></AssignedCourse>

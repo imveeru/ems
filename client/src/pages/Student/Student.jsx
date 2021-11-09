@@ -2,8 +2,8 @@ import React,{ useState,useEffect} from 'react'
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import {db} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
-
 import ElectiveList from '../../components/ElectiveList/ElectiveList'
+import AssignedElective from './../../components/Assigned Course/AssignedElective';
 
 function Student({userData}) {
 
@@ -32,8 +32,8 @@ function Student({userData}) {
                 assignedCourse.push(doc.data());
             })
         })
-        console.log(assignedCourse);
-        //setAssignedCourses(assignedCourse);
+        //console.log(assignedCourse);
+        setAssignedCourses(assignedCourse);
     }
 
     useEffect(()=>{
@@ -52,7 +52,11 @@ function Student({userData}) {
                     <p>Semester - {userData.currentSem}</p>
                 </div>
                 <ElectiveList electives={electives}/>
-                
+                {
+                    assignedCourses.map((assignedCourse,index)=>(
+                        <AssignedElective key={index} assignedCourse={assignedCourse}></AssignedElective>
+                    ))
+                }
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )
