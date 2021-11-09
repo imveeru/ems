@@ -3,7 +3,7 @@ import Header from '../../components/Header/Header'
 import {Link} from 'react-router-dom'
 import {db} from '../../firebase'
 import './Course.css'
-import {IoMdArrowRoundBack} from 'react-icons/io'
+import {MdOutlineArrowBackIos} from 'react-icons/md'
 
 function Course(props) {
     console.log(props.match.params.courseId);
@@ -27,7 +27,8 @@ function Course(props) {
         <div>
             <Header/>
             <div className="back-btn">
-                    <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h3><IoMdArrowRoundBack/>   Back</h3></Link>
+                    <MdOutlineArrowBackIos/>
+                    <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h3>Back</h3></Link>
                 </div>
             {course?
                 <div className="course-container">

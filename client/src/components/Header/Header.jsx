@@ -4,6 +4,7 @@ import {useAuth} from '../../context/AuthContext'
 import {useHistory} from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast';
 import {Link} from 'react-router-dom'
+import {IoMdSettings} from 'react-icons/io'
 
 function Header() {
 
@@ -29,7 +30,10 @@ function Header() {
         <div className='header'>
             <Toaster/>
             <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h2>Elective Management System</h2></Link>
-            <button className='logout-btn' onClick={handleLogout}>Log Out</button>
+            <div className="header-btns">
+                <Link to="/" style={{'textDecoration':'none','color': 'black'}}><p title="User Settings"><IoMdSettings className="profile-btn"/></p></Link>
+                <button className='logout-btn' onClick={handleLogout}>Log Out</button>
+            </div>
         </div>
     )
 }

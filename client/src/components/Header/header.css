@@ -27,3 +27,27 @@
     cursor: pointer;
     background:rgb(30, 135, 255);
 }
+
+.header-btns{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.profile-btn{
+    display:flex; 
+    align-items: center;
+    font-size: 1.2em;
+    /* background:rgb(30, 135, 255,0.2); */
+    border: 1.5px solid rgb(0,0,0,0.2);
+    outline-offset: 10px;
+    border-radius:10px;
+    padding: 10px;
+    font-family: 'Poppins';
+    font-weight: 600;
+    margin-right:10px;
+}
+
+.profile-btn:hover{
+    background: rgb(0,0,0,0.03);
+}
