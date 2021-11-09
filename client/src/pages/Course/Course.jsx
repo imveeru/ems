@@ -29,7 +29,7 @@ function Course(props) {
             <div className="back-btn">
                     <MdOutlineArrowBackIos/>
                     <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h3>Back</h3></Link>
-                </div>
+            </div>
             {course?
                 <div className="course-container">
                     <p className="course-title">{course.title}</p>

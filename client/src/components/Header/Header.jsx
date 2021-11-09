@@ -31,7 +31,7 @@ function Header() {
             <Toaster/>
             <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h2>Elective Management System</h2></Link>
             <div className="header-btns">
-                <Link to="/" style={{'textDecoration':'none','color': 'black'}}><p title="User Settings"><IoMdSettings className="profile-btn"/></p></Link>
+                <Link to="/settings/" style={{'textDecoration':'none','color': 'black'}}><p title="User Settings"><IoMdSettings className="profile-btn"/></p></Link>
                 <button className='logout-btn' onClick={handleLogout}>Log Out</button>
             </div>
         </div>
