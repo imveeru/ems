@@ -12,6 +12,7 @@ import {
 import { AuthProvider } from "./context/AuthContext"
 import PrivateRoute from './routes/PrivateRoute'
 import Course from './pages/Course/Course';
+import Settings from './pages/Settings/Settings';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/" component={Home}/>
             <PrivateRoute path="/course/:courseId" component={Course}/>
+            <PrivateRoute path="/settings/:userId" component={Settings}/>
             <Route path="/login" component={Login}/>
             <Route path="/forgot-password" component={ForgotPassword}/>
           </Switch>

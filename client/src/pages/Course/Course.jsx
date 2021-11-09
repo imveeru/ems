@@ -6,7 +6,7 @@ import './Course.css'
 import {MdOutlineArrowBackIos} from 'react-icons/md'
 
 function Course(props) {
-    console.log(props.match.params.courseId);
+    //console.log(props.match.params.courseId);
     const courseDbRef=db.collection('courses')
 
     const[course,setCourse]=useState({})

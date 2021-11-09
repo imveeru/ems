@@ -23,7 +23,6 @@ export function AuthProvider({ children }) {
     return auth.sendPasswordResetEmail(email)
   }
 
-
   function updatePassword(password) {
     return currentUser.updatePassword(password)
   }
