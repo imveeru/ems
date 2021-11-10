@@ -10,7 +10,9 @@ function AssignedCourse({assignedCourse}) {
 
     const [expanded, setExpanded] = useState(false)
 
-    const{register,handleSubmit}=useForm();
+    const{register,handleSubmit,watch}=useForm();
+
+    const limitChangeFlag=watch('limitChange')
 
     const fetchCourseData=async()=> {
 
@@ -74,7 +76,7 @@ function AssignedCourse({assignedCourse}) {
                                     </label>
                                 </p>
                                 <label html-for='max-limit'>Maximum Limit</label>
-                                <input {...register("maxLimit")} id='max-limit' className='max-limit' type='number'></input>
+                                <input {...register("maxLimit")} disabled={limitChangeFlag==='No'?"disabled":""} type=''id='max-limit' className='max-limit' type='number'></input>
                             </form>
                             </div>
                             )
