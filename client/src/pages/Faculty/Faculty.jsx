@@ -22,7 +22,7 @@ function Faculty({userData}) {
 
             setAssignedCourses(assignedCourse)
         });
-        console.log(assignedCourses);
+        //console.log(assignedCourses);
     }
 
     useEffect(()=>{

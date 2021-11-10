@@ -57,6 +57,6 @@ h1{
 .elective-choices{
     display: flex;
     row-gap: 15px;
-    column-gap:100px;
+    column-gap:80px;
     flex-wrap: wrap;
 }

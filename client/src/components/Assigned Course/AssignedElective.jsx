@@ -3,15 +3,20 @@ import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
 import './AssignedElective.css'
+import { useForm } from "react-hook-form";
+import {FiExternalLink} from 'react-icons/fi'
 
 function AssignedElective({assignedCourses}) {
+
+    const{ register, handleSubmit}=useForm();
+
     return (
             <>        
-            <form className="elective-choices">
+            <form className="elective-choices" onSubmit={handleSubmit()}>
                 {assignedCourses.map((assignedCourse,index)=>(
                         <div key={index}>
                             <div className="assigned-elective">
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+                                    <input type="checkbox" id={`electiveChoice_${index}`} name={assignedCourse.courseCode} value={assignedCourse.courseCode}/>
                                     <input type="hidden" value={assignedCourse.courseCode+"_"+assignedCourse.batch+"_"+assignedCourse.sem+"_"+assignedCourse.dep}></input>
                                     <CircularProgressbar
                                             value={parseInt(assignedCourse.studentList.length)-1}
@@ -27,12 +32,12 @@ function AssignedElective({assignedCourses}) {
                                             maxValue={parseInt(assignedCourse.maxLimit)}
                                             className='elective-progress-bar'
                                     ></CircularProgressbar>
-
                                     <div className="assigned-elective-details">
                                         <Link className="assigned-course-title" to={"/course/"+assignedCourse.courseCode} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
-                                        <p>Faculty - <strong>{assignedCourse.faculty}</strong></p>
+                                        <p>Faculty - <strong>{assignedCourse.faculty}     </strong><a href='https://amrita.edu' rel="noopener noreferrer" target="_blank"><FiExternalLink/></a></p>
                                     </div>
                             </div>
+                            <p></p>
                         </div>
                     ))}
             </form>
