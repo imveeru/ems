@@ -10,10 +10,6 @@ function Faculty({userData}) {
 
     const q = query(collection(db, "electives"), where("faculty", "==", userData.name));
 
-    const windowReload=()=>{
-        window.location.reload();
-    }
-
     const fetchUserData=async()=>{
         var assignedCourse = [];
         
@@ -23,12 +19,10 @@ function Faculty({userData}) {
             querySnapshot.forEach((doc) => {
                 assignedCourse.push(doc.data());
             });
+
+            setAssignedCourses(assignedCourse)
         });
-        
-        //console.log(assignedCourse);
-        setAssignedCourses(assignedCourse).then(() => {
-            windowReload()
-        })
+        console.log(assignedCourses);
     }
 
     useEffect(()=>{

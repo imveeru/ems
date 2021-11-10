@@ -28,6 +28,7 @@ function Student({userData}) {
         // fetch elective choices
         const assignedCourse = [];
         onSnapshot(assignedCourseQuery, (querySnapshot) => {
+            assignedCourse.splice(0,assignedCourse.length)
             querySnapshot.forEach((doc) => {
                 assignedCourse.push(doc.data());
             })

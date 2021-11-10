@@ -6,8 +6,8 @@ import './AssignedElective.css'
 
 function AssignedElective({assignedCourses}) {
     return (
-            assignedCourses.map((assignedCourse)=>(
-                <div key={assignedCourse.courseCode+"_"+assignedCourse.batch+"_"+assignedCourse.sem+"_"+assignedCourse.dept}>
+            assignedCourses.map((assignedCourse,index)=>(
+                <div key={index}>
                     <div className="assigned-elective">
                             <form>
                                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
