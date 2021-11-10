@@ -12,7 +12,7 @@ function AssignedCourse({assignedCourse}) {
 
     const{register,handleSubmit,watch}=useForm();
 
-    const limitChangeFlag=watch('limitChange')
+    const[wannaChange,setWannaChange]=useState(false);
 
     const fetchCourseData=async()=> {
 
@@ -67,16 +67,17 @@ function AssignedCourse({assignedCourse}) {
                             <form onSubmit={handleSubmit()}>
                                 <p>Do you wish to change the limit?
                                     <label html-for='yes'>
-                                        <input {...register("limitChange")} type='radio' id='yes' name='limitChange' value='yes'/>
+                                        <input {...register("limitChange")} type='radio' id='yes' name='limitChange' onChange={()=>setWannaChange(!wannaChange)} value='yes'/>
                                         Yes
                                     </label>
                                     <label html-for='no'>
-                                        <input {...register("limitChange")} type='radio' id='no' name='limitChange' value='no'/>
+                                        <input {...register("limitChange")} defaultChecked type='radio' id='no' name='limitChange' onChange={()=>setWannaChange(!wannaChange)} value='no'/>
                                         No
                                     </label>
                                 </p>
                                 <label html-for='max-limit'>Maximum Limit</label>
-                                <input {...register("maxLimit")} disabled={limitChangeFlag==='No'?"disabled":""} type=''id='max-limit' className='max-limit' type='number'></input>
+                                <input {...register("maxLimit")} value={assignedCourse.maxLimit} disabled={wannaChange?"":"disabled"} id='max-limit' className='max-limit' type='number'></input>
+                                <input {...register("electiveId")} type='hidden' value={}></input>    
                             </form>
                             </div>
                             )
