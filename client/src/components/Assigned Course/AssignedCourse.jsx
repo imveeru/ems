@@ -18,8 +18,14 @@ function AssignedCourse({assignedCourse}) {
 
     const[formData,setFormData]=useState({});
 
-    const onSubmit = (data)=>{
+    const onSubmit = async(data)=>{
         setFormData(data)
+        const electiveRef = doc(db, "electives", data.electiveId);
+        
+        await updateDoc(electiveRef, {
+            maxLimit:data.maxLimit
+        });
+
     }
 
     return (
