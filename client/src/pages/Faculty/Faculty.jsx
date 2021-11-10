@@ -10,22 +10,29 @@ function Faculty({userData}) {
 
     const q = query(collection(db, "electives"), where("faculty", "==", userData.name));
 
-    const fetchUserData=async()=>{
+    const windowReload=()=>{
+        window.location.reload();
+    }
 
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            const assignedCourse = [];
+    const fetchUserData=async()=>{
+        var assignedCourse = [];
+        
+        onSnapshot(q, (querySnapshot) => {
+            assignedCourse.splice(0,assignedCourse.length)
+            
             querySnapshot.forEach((doc) => {
                 assignedCourse.push(doc.data());
             });
-
-            //console.log(assignedCourse);
-            setAssignedCourses(assignedCourse);
         });
+        
+        //console.log(assignedCourse);
+        setAssignedCourses(assignedCourse);
     }
 
     useEffect(()=>{
         fetchUserData();
     },[])
+
 
     return (
             <div className="home-container">

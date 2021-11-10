@@ -55,11 +55,7 @@ function Student({userData}) {
                 <div className="elective-choices-container">
                     <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
                     <div className="elective-choices">
-                    {
-                        assignedCourses.map((assignedCourse,index)=>(
-                            <AssignedElective key={index} assignedCourse={assignedCourse}></AssignedElective>
-                        ))
-                    }
+                    <AssignedElective assignedCourses={assignedCourses}/>
                     </div>
                 </div>
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
