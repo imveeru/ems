@@ -1,15 +1,24 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
 import {MdExpandMore,MdExpandLess} from 'react-icons/md'
+import { useForm } from "react-hook-form";
 import {db} from '../../firebase'
 
 function AssignedCourse({assignedCourse}) {
 
     const [expanded, setExpanded] = useState(false)
 
+    const{register,handleSubmit}=useForm();
 
+    const fetchCourseData=async()=> {
+
+    }
+
+    useEffect(()=>{
+        fetchCourseData();
+    },[])
 
     return (
         <div className="course-assigned">
@@ -33,7 +42,6 @@ function AssignedCourse({assignedCourse}) {
                         <div className="assigned-course-details">
                             <Link className="assigned-course-title" to={"/course/"+assignedCourse.courseCode} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
                             <p>{assignedCourse.batch} Batch - {assignedCourse.dept} Dept. - Semester {assignedCourse.sem}</p>
-                            <p>{assignedCourse.s}</p>
                         </div>
                         
                         <button className="expand-btn" onClick={() => setExpanded(!expanded)}>
@@ -41,7 +49,10 @@ function AssignedCourse({assignedCourse}) {
                         </button>
                         <br/>
 
-                            {expanded&&(<table className="studentList">
+                            {expanded&&
+                            (
+                            <div className="hidden-div">
+                            <table className="studentList">
                                 <tr>
                                     <th>Student Roll Number</th>
                                 </tr>
@@ -50,7 +61,24 @@ function AssignedCourse({assignedCourse}) {
                                         <td>{student}</td>
                                     </tr>
                                 ))}
-                            </table>)}
+                            </table>
+                            <form onSubmit={handleSubmit()}>
+                                <p>Do you wish to change the limit?
+                                    <label html-for='yes'>
+                                        <input {...register("limitChange")} type='radio' id='yes' name='limitChange' value='yes'/>
+                                        Yes
+                                    </label>
+                                    <label html-for='no'>
+                                        <input {...register("limitChange")} type='radio' id='no' name='limitChange' value='no'/>
+                                        No
+                                    </label>
+                                </p>
+                                <label html-for='max-limit'>Maximum Limit</label>
+                                <input {...register("maxLimit")} id='max-limit' className='max-limit' type='number'></input>
+                            </form>
+                            </div>
+                            )
+                            }
 
                     </div>
                    

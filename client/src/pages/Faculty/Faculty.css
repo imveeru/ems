@@ -22,10 +22,15 @@ table,th,td{
 }
 
 .studentList{
-    margin: 30px;
     flex-grow:1;
-    align-self: flex-end;
     border-collapse: collapse;
+}
+
+.hidden-div{
+    margin:30px;
+    display: flex;
+    flex-grow:1;
+    flex-direction: column;
 }
 
 .expand-btn{
@@ -62,4 +67,14 @@ table,th,td{
 .progress-bar{
     height:110px;
     width:110px !important;
+}
+
+.max-limit{
+    background:none;
+    font-size: 16px;
+    padding: 10px;
+    width:50px;
+    border-radius:6px;
+    border: 1px solid rgba(0,0,0,0.5);
+    margin-left:15px 
 }
