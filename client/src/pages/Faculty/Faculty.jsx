@@ -26,7 +26,9 @@ function Faculty({userData}) {
         });
         
         //console.log(assignedCourse);
-        setAssignedCourses(assignedCourse);
+        setAssignedCourses(assignedCourse).then(() => {
+            windowReload()
+        })
     }
 
     useEffect(()=>{
