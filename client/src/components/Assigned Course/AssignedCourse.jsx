@@ -6,6 +6,7 @@ import {MdExpandMore,MdExpandLess} from 'react-icons/md'
 import { useForm } from "react-hook-form";
 import {db} from '../../firebase'
 import { doc, updateDoc } from "firebase/firestore";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function AssignedCourse({assignedCourse}) {
@@ -25,11 +26,12 @@ function AssignedCourse({assignedCourse}) {
         await updateDoc(electiveRef, {
             maxLimit:data.maxLimit
         });
-
+        toast.success('Maximum Limit updated!')
     }
 
     return (
         <div className="course-assigned">
+                    <Toaster/>
                     <div  key={assignedCourse.courseCode} className="assigned-course">
                         
                         <CircularProgressbar
@@ -86,7 +88,7 @@ function AssignedCourse({assignedCourse}) {
                                 <input {...register("electiveId")} type='hidden' value={assignedCourse.courseCode+"_"+assignedCourse.batch+"_"+assignedCourse.sem+"_"+assignedCourse.dept}></input>    
                                 <button type="submit" className="add-btn">Change Limit</button>
                             </form>
-                            <p>{JSON.stringify(formData)}</p>
+                            {/* <p>{JSON.stringify(formData)}</p> */}
                             </div>
                             )
                             }
