@@ -39,6 +39,7 @@ function Faculty({userData}) {
                             <AssignedCourse key={assignedCourse.courseCode} assignedCourse={assignedCourse}></AssignedCourse>
                         ))
                     }
+                    {/* <p>{JSON.stringify(assignedCourses[0])}</p> */}
             </div>
     )
 }

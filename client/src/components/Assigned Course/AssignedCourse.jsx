@@ -3,10 +3,13 @@ import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
 import {MdExpandMore,MdExpandLess} from 'react-icons/md'
+import {db} from '../../firebase'
 
 function AssignedCourse({assignedCourse}) {
 
     const [expanded, setExpanded] = useState(false)
+
+
 
     return (
         <div className="course-assigned">
@@ -30,6 +33,7 @@ function AssignedCourse({assignedCourse}) {
                         <div className="assigned-course-details">
                             <Link className="assigned-course-title" to={"/course/"+assignedCourse.courseCode} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
                             <p>{assignedCourse.batch} Batch - {assignedCourse.dept} Dept. - Semester {assignedCourse.sem}</p>
+                            <p>{assignedCourse.s}</p>
                         </div>
                         
                         <button className="expand-btn" onClick={() => setExpanded(!expanded)}>

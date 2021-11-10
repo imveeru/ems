@@ -48,7 +48,7 @@ function AssignCourse() {
 
     const onSubmit = (data)=>{
         setFormData(data)
-        db.collection('electives').doc().set(data)
+        db.collection('electives').doc(data.courseCode+"_"+data.batch+"_"+data.sem+"_"+data.dept).set(data)
         .then(()=>{
             toast.success('Course assigned successfully!')
         })
