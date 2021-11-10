@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import {MdExpandMore,MdExpandLess} from 'react-icons/md'
 import { useForm } from "react-hook-form";
 import {db} from '../../firebase'
+import { doc, updateDoc } from "firebase/firestore";
+
 
 function AssignedCourse({assignedCourse}) {
 
@@ -14,13 +16,11 @@ function AssignedCourse({assignedCourse}) {
 
     const[wannaChange,setWannaChange]=useState(false);
 
-    const fetchCourseData=async()=> {
+    const[formData,setFormData]=useState({});
 
+    const onSubmit = (data)=>{
+        setFormData(data)
     }
-
-    useEffect(()=>{
-        fetchCourseData();
-    },[])
 
     return (
         <div className="course-assigned">
@@ -64,7 +64,7 @@ function AssignedCourse({assignedCourse}) {
                                     </tr>
                                 ))}
                             </table>
-                            <form onSubmit={handleSubmit()}>
+                            <form onSubmit={handleSubmit(onSubmit)}>
                                 <p>Do you wish to change the limit?
                                     <label html-for='yes'>
                                         <input {...register("limitChange")} type='radio' id='yes' name='limitChange' onChange={()=>setWannaChange(!wannaChange)} value='yes'/>
@@ -76,9 +76,11 @@ function AssignedCourse({assignedCourse}) {
                                     </label>
                                 </p>
                                 <label html-for='max-limit'>Maximum Limit</label>
-                                <input {...register("maxLimit")} value={assignedCourse.maxLimit} disabled={wannaChange?"":"disabled"} id='max-limit' className='max-limit' type='number'></input>
-                                <input {...register("electiveId")} type='hidden' value={}></input>    
+                                <input {...register("maxLimit")} defaultValue={assignedCourse.maxLimit} min={assignedCourse.maxLimit} disabled={wannaChange?"":"disabled"} id='max-limit' className='max-limit' type='number'></input>
+                                <input {...register("electiveId")} type='hidden' value={assignedCourse.courseCode+"_"+assignedCourse.batch+"_"+assignedCourse.sem+"_"+assignedCourse.dept}></input>    
+                                <button type="submit" className="add-btn">Change Limit</button>
                             </form>
+                            <p>{JSON.stringify(formData)}</p>
                             </div>
                             )
                             }
