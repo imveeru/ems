@@ -71,7 +71,10 @@ function Student({userData}) {
                     <Select
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
-                        options={options}
+                        options={(selectedOption==null || selectedOption.length<3)?options:[]}
+                        noOptionsMessage={() => {
+                            return (selectedOption==null || selectedOption.length<3)?"":"🤐You're limited to choose only 3 courses!";
+                          }}
                         placeholder="Select required elective courses here..."
                         isMulti
                     />
