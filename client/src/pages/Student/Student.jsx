@@ -42,16 +42,15 @@ function Student({userData}) {
         fetchUserData()
     },[])
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
-        { value: 'Pista', label: 'Pistacho' },
-    ];
+    const options =[];
+
+    assignedCourses.map((assignedCourse) => {
+        options.push({"value":assignedCourse.courseCode,"label":assignedCourse.courseCode})
+    })
+
+    const maxNoOfElectives=1
 
     const [selectedOption, setSelectedOption] = useState(null);
-
-    // const enableMultiple=(selectedOption.length>=3)?true:false;
 
     //console.log(electives); 
 
@@ -71,9 +70,9 @@ function Student({userData}) {
                     <Select
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
-                        options={(selectedOption==null || selectedOption.length<3)?options:[]}
+                        options={(selectedOption==null || selectedOption.length<maxNoOfElectives)?options:[]}
                         noOptionsMessage={() => {
-                            return (selectedOption==null || selectedOption.length<3)?"":"🤐You're limited to choose only 3 courses!";
+                            return (selectedOption==null || selectedOption.length<maxNoOfElectives)?"":"🤐You're limited to choose only 3 courses!";
                           }}
                         placeholder="Select required elective courses here..."
                         isMulti
