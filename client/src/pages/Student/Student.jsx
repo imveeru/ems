@@ -4,6 +4,7 @@ import {db} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
 import ElectiveList from '../../components/ElectiveList/ElectiveList'
 import AssignedElective from './../../components/Assigned Course/AssignedElective';
+import Select from 'react-select';
 
 function Student({userData}) {
 
@@ -40,7 +41,18 @@ function Student({userData}) {
     useEffect(()=>{
         fetchUserData()
     },[])
-    
+
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' },
+        { value: 'Pista', label: 'Pistacho' },
+    ];
+
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    // const enableMultiple=(selectedOption.length>=3)?true:false;
+
     //console.log(electives); 
 
     return (
@@ -55,6 +67,15 @@ function Student({userData}) {
                 <ElectiveList electives={electives}/>
                 <div className="elective-choices-container">
                     <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
+                    
+                    <Select
+                        defaultValue={selectedOption}
+                        onChange={setSelectedOption}
+                        options={options}
+                        placeholder="Select required elective courses here..."
+                        isMulti
+                    />
+                    
                     <div className="elective-choices">
                     <AssignedElective assignedCourses={assignedCourses}/>
                     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
@@ -10,14 +10,17 @@ function AssignedElective({assignedCourses}) {
 
     const{ register, handleSubmit}=useForm();
 
+    const[formData,setFormData]=useState();
+
+    const onSubmit = (data)=>{
+        setFormData(data)
+    }
+
     return (
             <>        
-            <form className="elective-choices" onSubmit={handleSubmit()}>
                 {assignedCourses.map((assignedCourse,index)=>(
                         <div key={index}>
                             <div className="assigned-elective">
-                                    <input type="checkbox" id={`electiveChoice_${index}`} name={assignedCourse.courseCode} value={assignedCourse.courseCode}/>
-                                    <input type="hidden" value={assignedCourse.courseCode+"_"+assignedCourse.batch+"_"+assignedCourse.sem+"_"+assignedCourse.dep}></input>
                                     <CircularProgressbar
                                             value={parseInt(assignedCourse.studentList.length)-1}
                                             text={`${parseInt(parseInt(assignedCourse.maxLimit)-parseInt(assignedCourse.studentList.length)+1)}/${assignedCourse.maxLimit}`}
@@ -40,7 +43,6 @@ function AssignedElective({assignedCourses}) {
                             <p></p>
                         </div>
                     ))}
-            </form>
             </>
     )
 }
