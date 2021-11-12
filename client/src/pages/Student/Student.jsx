@@ -71,17 +71,24 @@ function Student({userData}) {
     const options =[];
 
     //options input
-    assignedCourses.map((assignedCourse) => {
+    assignedCourses.forEach((assignedCourse) => {
         options.push({"value":assignedCourse.courseCode,"label":assignedCourse.courseCode})
     })
 
-    const newOptions=options.filter((option) => {
-        //return option.value!==alreadyEnrolledCourses[0]
-        let newOptionList=[]
+
+
+    //filtering already registered courses    
         for(var i=0;i<alreadyEnrolledCourses.length;i++){
-            return option.value!==alreadyEnrolledCourses[i]
+            //options.value.indexOf(alreadyEnrolledCourses[i])
+            for(var j=0;j<options.length;j++){
+                if(options[j].value===alreadyEnrolledCourses[i]){
+                    options.splice(j,1)
+                }   
+            }
         }
-    })
+
+
+    //return option.value!==alreadyEnrolledCourses[0]
 
     const maxNoOfElectives=2
 
@@ -138,7 +145,7 @@ function Student({userData}) {
                     <Select
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
-                        options={(selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?newOptions:[]}
+                        options={(selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?options:[]}
                         noOptionsMessage={() => {
                             return (selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?"":`🤐You're limited to choose only ${(maxNoOfElectives)} elective courses!`;
                         }}
@@ -154,7 +161,7 @@ function Student({userData}) {
                     <AssignedElective assignedCourses={assignedCourses}/>
                     </div>
                 </div>
-                <p>{JSON.stringify(newOptions)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p>
+                <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p>
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )
