@@ -20,6 +20,7 @@ function Student({userData}) {
 
     const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
+
     const fetchUserData=async()=>{
         //const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
         var electiveList=[]
@@ -38,7 +39,6 @@ function Student({userData}) {
                 assignedCourse.push(doc.data());
             })
         })
-        //console.log(assignedCourse);
         setAssignedCourses(assignedCourse);
     }
 
@@ -55,6 +55,7 @@ function Student({userData}) {
 
     const options =[];
 
+    //options input
     assignedCourses.map((assignedCourse) => {
         options.push({"value":assignedCourse.courseCode,"label":assignedCourse.courseCode})
     })
@@ -67,7 +68,7 @@ function Student({userData}) {
 
     //console.log(electives); 
 
-    const handleEnroll=(formData, event)=>{
+    const handleEnroll=()=>{
         if(selectedOption==null || selectedOption.length<maxNoOfElectives){
             toast.error("Choose your electives before enrolling!");
         }else if(selectedOption!=null && selectedOption.length===maxNoOfElectives){
@@ -76,6 +77,7 @@ function Student({userData}) {
                 chosenElectivesList.push(option.value)
             })
             setChosenElectives(chosenElectivesList);
+
             chosenElectivesList.forEach(async elective => {
                 let electiveCode=elective+"_"+userData.yearJoined+"_"+userData.currentSem+"_"+userData.branch
                 // console.log(electiveCode);
@@ -85,6 +87,7 @@ function Student({userData}) {
                 });
                 
             })
+
             toast.success("Enrolled successfully!🥳");
         }
     }
