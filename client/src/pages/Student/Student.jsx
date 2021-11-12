@@ -75,7 +75,13 @@ function Student({userData}) {
         options.push({"value":assignedCourse.courseCode,"label":assignedCourse.courseCode})
     })
 
-    var newOptions=options.filter((option) => {return option.value!==alreadyEnrolledCourses[0]})
+    const newOptions=options.filter((option) => {
+        //return option.value!==alreadyEnrolledCourses[0]
+        let newOptionList=[]
+        for(var i=0;i<alreadyEnrolledCourses.length;i++){
+            return option.value!==alreadyEnrolledCourses[i]
+        }
+    })
 
     const maxNoOfElectives=2
 
@@ -88,9 +94,9 @@ function Student({userData}) {
     
 
     const handleEnroll=()=>{
-        if(selectedOption==null || selectedOption.length<maxNoOfElectives){
+        if(selectedOption==null || selectedOption.length<=0){
             toast.error("Choose your electives before enrolling!");
-        }else if(selectedOption!=null && selectedOption.length===maxNoOfElectives){
+        }else if(selectedOption!=null && ((selectedOption.length===maxNoOfElectives) || selectedOption.length===(maxNoOfElectives-noOfAlreadyEnrolledCourses))){
             //set chose electives
             var chosenElectivesList=[]
             selectedOption.forEach(option=>{
@@ -134,7 +140,7 @@ function Student({userData}) {
                         onChange={setSelectedOption}
                         options={(selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?newOptions:[]}
                         noOptionsMessage={() => {
-                            return (selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?"":`🤐You're limited to choose only ${(maxNoOfElectives)} more courses!`;
+                            return (selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?"":`🤐You're limited to choose only ${(maxNoOfElectives)} elective courses!`;
                         }}
                         placeholder="Select required elective courses here..."
                         isMulti
