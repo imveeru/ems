@@ -5,18 +5,15 @@ import {useAuth} from '../../context/AuthContext'
 import ElectiveList from '../../components/ElectiveList/ElectiveList'
 import AssignedElective from './../../components/Assigned Course/AssignedElective';
 import Select from 'react-select';
-import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
 
 function Student({userData}) {
 
     const [electives,setElectives]=useState([]);
 
-    const[assignedCourses,setAssignedCourses]= useState([])
+    const [assignedCourses,setAssignedCourses]= useState([])
 
     const {currentUser}=useAuth()
-
-    const{ register, handleSubmit } = useForm();
 
     const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
