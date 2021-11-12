@@ -14,13 +14,15 @@ function Student({userData}) {
 
     const [assignedCourses,setAssignedCourses]= useState([])
 
-    const [enrolledStatus,setEnrolledStatus]=useState([])
+    const [alreadyEnrolledCourses,setAlreadyEnrolledCourses]=useState([])
 
     const {currentUser}=useAuth()
 
     const {handleSubmit}=useForm()
 
     const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
+
+    const alreadyEnrolledCourseQuery = query(collection(db, "electives"), where("studentList","array-contains",userData.regNo), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
     const fetchUserData=async()=>{
         //const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
@@ -43,8 +45,15 @@ function Student({userData}) {
         setAssignedCourses(assignedCourse);
 
         // already registered status
-        
-        //console.log(enrolledStatusList);
+        const alreadyEnrolledCourseList = [];
+        onSnapshot(alreadyEnrolledCourseQuery, (querySnapshot) => {
+            alreadyEnrolledCourseList.splice(0,alreadyEnrolledCourseList.length)
+            querySnapshot.forEach((doc) => {
+                alreadyEnrolledCourseList.push(doc.data().courseCode);
+            })
+        })
+        setAlreadyEnrolledCourses(alreadyEnrolledCourseList);
+        console.log(alreadyEnrolledCourseList);
     }
 
     const customStyles = {
@@ -59,8 +68,6 @@ function Student({userData}) {
         fetchUserData()
     },[])
 
-    
-
     const options =[];
 
     //options input
@@ -68,7 +75,11 @@ function Student({userData}) {
         options.push({"value":assignedCourse.courseCode,"label":assignedCourse.courseCode})
     })
 
+    var newOptions=options.filter((option) => {return option.value!==alreadyEnrolledCourses[0]})
+
     const maxNoOfElectives=2
+
+    const noOfAlreadyEnrolledCourses = alreadyEnrolledCourses.length;
 
     const [selectedOption, setSelectedOption] = useState(null);
 
@@ -121,9 +132,9 @@ function Student({userData}) {
                     <Select
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
-                        options={(selectedOption==null || selectedOption.length<maxNoOfElectives)?options:[]}
+                        options={(selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?newOptions:[]}
                         noOptionsMessage={() => {
-                            return (selectedOption==null || selectedOption.length<maxNoOfElectives)?"":`🤐You're limited to choose only ${maxNoOfElectives} courses!`;
+                            return (selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?"":`🤐You're limited to choose only ${(maxNoOfElectives)} more courses!`;
                         }}
                         placeholder="Select required elective courses here..."
                         isMulti
@@ -137,7 +148,7 @@ function Student({userData}) {
                     <AssignedElective assignedCourses={assignedCourses}/>
                     </div>
                 </div>
-                <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(enrolledStatus)}</p>
+                <p>{JSON.stringify(newOptions)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p>
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )
