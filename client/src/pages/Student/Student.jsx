@@ -153,6 +153,7 @@ function Student({userData}) {
                         isMulti
                         styles={customStyles}
                         closeMenuOnSelect={false}
+                        isDisabled={maxNoOfElectives===alreadyEnrolledCourses.length?true:false}
                     />
                     <button type="submit" className="add-btn enroll-btn">Enroll</button>
                     </form>
