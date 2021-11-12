@@ -6,6 +6,7 @@ import ElectiveList from '../../components/ElectiveList/ElectiveList'
 import AssignedElective from './../../components/Assigned Course/AssignedElective';
 import Select from 'react-select';
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from 'react-hot-toast';
 
 function Student({userData}) {
 
@@ -41,6 +42,13 @@ function Student({userData}) {
         setAssignedCourses(assignedCourse);
     }
 
+    const customStyles = {
+        option: (provided, state) => ({
+          ...provided,
+          padding: 20,
+        }),
+      }
+
     useEffect(()=>{
         fetchUserData()
     },[])
@@ -59,14 +67,15 @@ function Student({userData}) {
 
     const handleEnroll=()=>{
         if(selectedOption==null || selectedOption.length<maxNoOfElectives){
-            console.log("Choose your electives before enrolling!");
+            toast.error("Choose your electives before enrolling!");
         }else if(selectedOption!=null && selectedOption.length===maxNoOfElectives){
-            console.log("Enrolled");
+            toast.success("Enrolled successfully!🥳");
         }
     }
 
     return (
             <div className="home-container">
+                <Toaster/>
                 <h1>Welcome {userData.name}!<span className="user-regno">   [{userData.regNo}]</span></h1>
                 <div className="user-details">
                     <p>{userData.program} {userData.branch}</p>
@@ -87,6 +96,7 @@ function Student({userData}) {
                         }}
                         placeholder="Select required elective courses here..."
                         isMulti
+                        styles={customStyles}
                     />
                     <button className="add-btn enroll-btn" onClick={handleEnroll}>Enroll</button>
                     
