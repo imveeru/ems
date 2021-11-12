@@ -5,6 +5,7 @@ import {useAuth} from '../../context/AuthContext'
 import ElectiveList from '../../components/ElectiveList/ElectiveList'
 import AssignedElective from './../../components/Assigned Course/AssignedElective';
 import Select from 'react-select';
+import { useForm } from "react-hook-form";
 
 function Student({userData}) {
 
@@ -13,6 +14,8 @@ function Student({userData}) {
     const[assignedCourses,setAssignedCourses]= useState([])
 
     const {currentUser}=useAuth()
+
+    const{ register, handleSubmit } = useForm();
 
     const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
@@ -54,6 +57,14 @@ function Student({userData}) {
 
     //console.log(electives); 
 
+    const handleEnroll=()=>{
+        if(selectedOption==null || selectedOption.length<maxNoOfElectives){
+            console.log("Choose your electives before enrolling!");
+        }else if(selectedOption!=null && selectedOption.length===maxNoOfElectives){
+            console.log("Enrolled");
+        }
+    }
+
     return (
             <div className="home-container">
                 <h1>Welcome {userData.name}!<span className="user-regno">   [{userData.regNo}]</span></h1>
@@ -72,11 +83,13 @@ function Student({userData}) {
                         onChange={setSelectedOption}
                         options={(selectedOption==null || selectedOption.length<maxNoOfElectives)?options:[]}
                         noOptionsMessage={() => {
-                            return (selectedOption==null || selectedOption.length<maxNoOfElectives)?"":"🤐You're limited to choose only 3 courses!";
+                            return (selectedOption==null || selectedOption.length<maxNoOfElectives)?"":`🤐You're limited to choose only ${maxNoOfElectives} courses!`;
                           }}
                         placeholder="Select required elective courses here..."
                         isMulti
                     />
+                    <button className="add-btn enroll-btn" onClick={handleEnroll}>Enroll</button>
+                    
                     
                     <div className="elective-choices">
                     <AssignedElective assignedCourses={assignedCourses}/>
