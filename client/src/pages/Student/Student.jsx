@@ -1,5 +1,5 @@
 import React,{ useState,useEffect} from 'react'
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { collection, query, where, onSnapshot,updateDoc, arrayUnion,doc } from "firebase/firestore";
 import {db} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
 import ElectiveList from '../../components/ElectiveList/ElectiveList'
@@ -76,8 +76,14 @@ function Student({userData}) {
                 chosenElectivesList.push(option.value)
             })
             setChosenElectives(chosenElectivesList);
-            chosenElectivesList.forEach(elective => {
-                console.log(elective);
+            chosenElectivesList.forEach(async elective => {
+                let electiveCode=elective+"_"+userData.yearJoined+"_"+userData.currentSem+"_"+userData.branch
+                // console.log(electiveCode);
+                let electiveRef=doc(db,"electives",electiveCode)
+                await updateDoc(electiveRef, {
+                    studentList: arrayUnion(userData.regNo)
+                });
+                
             })
             toast.success("Enrolled successfully!🥳");
         }
