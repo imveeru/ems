@@ -84,7 +84,7 @@ function Student({userData}) {
                         options={(selectedOption==null || selectedOption.length<maxNoOfElectives)?options:[]}
                         noOptionsMessage={() => {
                             return (selectedOption==null || selectedOption.length<maxNoOfElectives)?"":`🤐You're limited to choose only ${maxNoOfElectives} courses!`;
-                          }}
+                        }}
                         placeholder="Select required elective courses here..."
                         isMulti
                     />
