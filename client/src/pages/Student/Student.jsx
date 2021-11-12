@@ -53,7 +53,7 @@ function Student({userData}) {
             })
         })
         setAlreadyEnrolledCourses(alreadyEnrolledCourseList);
-        console.log(alreadyEnrolledCourseList);
+        //console.log(alreadyEnrolledCourseList);
     }
 
     const customStyles = {
