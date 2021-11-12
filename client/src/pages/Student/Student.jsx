@@ -14,12 +14,13 @@ function Student({userData}) {
 
     const [assignedCourses,setAssignedCourses]= useState([])
 
+    const [enrolledStatus,setEnrolledStatus]=useState([])
+
     const {currentUser}=useAuth()
 
     const {handleSubmit}=useForm()
 
     const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
-
 
     const fetchUserData=async()=>{
         //const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
@@ -40,6 +41,10 @@ function Student({userData}) {
             })
         })
         setAssignedCourses(assignedCourse);
+
+        // already registered status
+        
+        //console.log(enrolledStatusList);
     }
 
     const customStyles = {
@@ -48,10 +53,13 @@ function Student({userData}) {
           padding: 20,
         }),
       }
-
+    
+      
     useEffect(()=>{
         fetchUserData()
     },[])
+
+    
 
     const options =[];
 
@@ -66,18 +74,20 @@ function Student({userData}) {
 
     const [chosenElectives, setChosenElectives] = useState([])
 
-    //console.log(electives); 
+    
 
     const handleEnroll=()=>{
         if(selectedOption==null || selectedOption.length<maxNoOfElectives){
             toast.error("Choose your electives before enrolling!");
         }else if(selectedOption!=null && selectedOption.length===maxNoOfElectives){
+            //set chose electives
             var chosenElectivesList=[]
             selectedOption.forEach(option=>{
                 chosenElectivesList.push(option.value)
             })
             setChosenElectives(chosenElectivesList);
 
+            // add student roll num in elective doc.
             chosenElectivesList.forEach(async elective => {
                 let electiveCode=elective+"_"+userData.yearJoined+"_"+userData.currentSem+"_"+userData.branch
                 // console.log(electiveCode);
@@ -89,6 +99,8 @@ function Student({userData}) {
             })
 
             toast.success("Enrolled successfully!🥳");
+
+            //console.log(options);
         }
     }
 
@@ -125,6 +137,7 @@ function Student({userData}) {
                     <AssignedElective assignedCourses={assignedCourses}/>
                     </div>
                 </div>
+                <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(enrolledStatus)}</p>
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )
