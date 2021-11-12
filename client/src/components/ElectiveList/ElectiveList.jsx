@@ -7,7 +7,7 @@ function ElectiveList({electives}) {
         <div className="previous-electives-container">
         <h2 className="previous-electives-title">Electives of All Semesters<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
         <div className="previous-electives-list">
-                {electives.map((elective) =>(
+                {electives?electives.map((elective) =>(
                         <div key={elective.sem} className="previous-elective">
                             <div className="sem-name">Semester - {elective.sem}</div>
                             <div className="sem-list">
@@ -16,7 +16,7 @@ function ElectiveList({electives}) {
                                 <Link to={elective.elective_3===null?"#":"/course/"+elective.elective_3} style={{'textDecoration':'none','color':'black'}}><p className='elective'>Elective 3 - {elective.elective_3===null?"No Elective":elective.elective_3}</p></Link>
                             </div>
                         </div> 
-                ))}
+                )):<div><h2>😢No elective data found!</h2></div>}
         </div>
         </div>
     )

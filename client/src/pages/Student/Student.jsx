@@ -6,6 +6,7 @@ import ElectiveList from '../../components/ElectiveList/ElectiveList'
 import AssignedElective from './../../components/Assigned Course/AssignedElective';
 import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
+import { useForm } from 'react-hook-form'
 
 function Student({userData}) {
 
@@ -14,6 +15,8 @@ function Student({userData}) {
     const [assignedCourses,setAssignedCourses]= useState([])
 
     const {currentUser}=useAuth()
+
+    const {handleSubmit}=useForm()
 
     const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
@@ -56,16 +59,26 @@ function Student({userData}) {
         options.push({"value":assignedCourse.courseCode,"label":assignedCourse.courseCode})
     })
 
-    const maxNoOfElectives=1
+    const maxNoOfElectives=2
 
     const [selectedOption, setSelectedOption] = useState(null);
 
+    const [chosenElectives, setChosenElectives] = useState([])
+
     //console.log(electives); 
 
-    const handleEnroll=()=>{
+    const handleEnroll=(formData, event)=>{
         if(selectedOption==null || selectedOption.length<maxNoOfElectives){
             toast.error("Choose your electives before enrolling!");
         }else if(selectedOption!=null && selectedOption.length===maxNoOfElectives){
+            var chosenElectivesList=[]
+            selectedOption.forEach(option=>{
+                chosenElectivesList.push(option.value)
+            })
+            setChosenElectives(chosenElectivesList);
+            chosenElectivesList.forEach(elective => {
+                console.log(elective);
+            })
             toast.success("Enrolled successfully!🥳");
         }
     }
@@ -83,7 +96,7 @@ function Student({userData}) {
                 <ElectiveList electives={electives}/>
                 <div className="elective-choices-container">
                     <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
-                    
+                    <form onSubmit={handleSubmit(handleEnroll)}>
                     <Select
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
@@ -94,9 +107,10 @@ function Student({userData}) {
                         placeholder="Select required elective courses here..."
                         isMulti
                         styles={customStyles}
+                        closeMenuOnSelect={false}
                     />
-                    <button className="add-btn enroll-btn" onClick={handleEnroll}>Enroll</button>
-                    
+                    <button type="submit" className="add-btn enroll-btn">Enroll</button>
+                    </form>
                     
                     <div className="elective-choices">
                     <AssignedElective assignedCourses={assignedCourses}/>
