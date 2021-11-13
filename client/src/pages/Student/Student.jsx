@@ -104,7 +104,7 @@ function Student({userData}) {
     const handleEnroll=()=>{
         if(selectedOption==null || selectedOption.length<=0){
             toast.error("Choose your electives before enrolling!");
-        }else if(selectedOption!=null && ((selectedOption.length===maxNoOfElectives) || selectedOption.length===(maxNoOfElectives-noOfAlreadyEnrolledCourses))){
+        }else if(selectedOption!=null && ((selectedOption.length===maxNoOfElectives) || selectedOption.length<=(maxNoOfElectives-noOfAlreadyEnrolledCourses))){
             //set chose electives
             var chosenElectivesList=[]
             selectedOption.forEach(option=>{
@@ -126,6 +126,8 @@ function Student({userData}) {
             toast.success("Enrolled successfully!🥳");
 
             //console.log(options);
+        }else{
+            toast.error("Unexpected error occured! Contact Administration Team.")
         }
     }
 
@@ -142,7 +144,7 @@ function Student({userData}) {
                 <ElectiveList electives={electives}/>
                 <div className="elective-choices-container">
                     <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
-                    <form onSubmit={handleSubmit(handleEnroll)}>
+                    <form onSubmit={handleSubmit(handleEnroll)}> 
                     <Select
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
@@ -158,15 +160,16 @@ function Student({userData}) {
                     />
                     <button type="submit" className="add-btn enroll-btn">Enroll</button>
                     </form>
-                    
+
                     <div className="elective-choices">
                     <AssignedElective assignedCourses={assignedCourses}/>
                     </div>
                 </div>
+                
                 {/* <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p> */}
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
-                {alreadyEnrolledCourses&&(
-                    <ChangeElective/>
+                {alreadyEnrolledCourses.length>0&&(
+                    <ChangeElective alreadyEnrolledCourses={alreadyEnrolledCourses}/>
                 )}
             </div>
     )
