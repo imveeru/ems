@@ -1,12 +1,21 @@
 import React,{useState} from 'react'
 import { doc, getDoc } from "firebase/firestore";
 import './ChangeElective.css'
+import {useForm} from 'react-hook-form'
 import {db} from '../../firebase'
 import { useEffect } from 'react';
 
-function ChangeElective({alreadyEnrolledCourses,userData}) {
+function ChangeElective({alreadyEnrolledCourses,userData    }) {
 
     const[courseData,setCourseData]=useState([])
+
+    const{ register, handleSubmit } = useForm();
+
+    const[formData,setFormData] = useState({})
+
+    const onSubmit = (data)=>{
+        setFormData(data)
+    }
 
     const fetchCourseData=()=>{
         var courseDataList=[]
@@ -34,7 +43,25 @@ function ChangeElective({alreadyEnrolledCourses,userData}) {
                 ))}
             </div>
             </p>
-            <p>{JSON.stringify(userData)}</p>
+            {/* <p>{JSON.stringify(userData)}</p> */}
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <select {...register("alreadyEnrolled")}  placeholder="Choose the course you wish to change" className="select-btn">
+                    <option value="">Select the course you wish to opt out...</option>
+                    {
+                        alreadyEnrolledCourses.map((course,index)=>(
+                            <option key={index} value={course}>{course}</option>
+                        ))
+                    }
+                </select>
+                <select {...register("alreadyEnrolled")}  placeholder="Choose the course you wish to change" className="select-btn">
+                    <option value="">Select the course you wish to replace with...</option>
+                    {
+                        alreadyEnrolledCourses.map((course,index)=>(
+                            <option key={index} value={course}>{course}</option>
+                        ))
+                    }
+                </select>
+            </form>
         </div>
     )
 }

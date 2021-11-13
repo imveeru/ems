@@ -169,7 +169,7 @@ function Student({userData}) {
                 {/* <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p> */}
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
                 {alreadyEnrolledCourses.length>0&&(
-                    <ChangeElective alreadyEnrolledCourses={alreadyEnrolledCourses} userData={userData}/>
+                    <ChangeElective alreadyEnrolledCourses={alreadyEnrolledCourses} userData={userData} assignedCourses={assignedCourses}/>
                 )}
             </div>
     )
