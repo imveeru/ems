@@ -11,11 +11,14 @@ function Course(props) {
     //console.log(props.match.params.courseId);
     const courseDbRef=db.collection('courses')
 
-    const facultyDataQuery = query(collection(db, "users"),where("role","==","faculty"),where("name","==",props.match.params.facultyName))
-
+    var facultyDataQuery=null
+    if(props.match.params.facultyName){
+         facultyDataQuery = query(collection(db, "users"),where("role","==","faculty"),where("name","==",props.match.params.facultyName))
+    }
+    
     const[course,setCourse]=useState({})
 
-    const[facultyData,setFacultyData]=useState({})
+    const[facultyData,setFacultyData]=useState(null)
 
     const fetchUserData=async()=>{
         const res=courseDbRef.doc(props.match.params.courseId)
@@ -24,11 +27,15 @@ function Course(props) {
         })
 
         //get faculty details
-        onSnapshot(facultyDataQuery, (querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                setFacultyData(doc.data())
+        if(props.match.params.facultyName){
+            onSnapshot(facultyDataQuery, (querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    setFacultyData(doc.data())
+                })
             })
-        })
+        }else{
+            setFacultyData()
+        }
         
     }
 
