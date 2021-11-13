@@ -11,11 +11,14 @@ function Course(props) {
 
     const[course,setCourse]=useState({})
 
+    const[facultyName,setFacultyName]=useState()
+
     const fetchUserData=async()=>{
         const res=courseDbRef.doc(props.match.params.courseId)
         await res.onSnapshot((doc)=>{
             setCourse(doc.data())
         })
+        setFacultyName(props.match.params.facultyName)
     }
 
 
@@ -41,6 +44,7 @@ function Course(props) {
                     </div>
                     <p className="course-desc-title">Course Objective</p>
                     <p className="course-desc">{course.objective}</p>
+                    {facultyName?<p>{facultyName}</p>:<p>Name not available</p>}
                 </div>
             :
                <div className="course-container">

@@ -22,7 +22,8 @@ function App() {
         <div className="App">
           <Switch>
             <PrivateRoute exact path="/" component={Home}/>
-            <PrivateRoute path="/course/:courseId" component={Course}/>
+            <PrivateRoute exact path="/course/:courseId" component={Course}/>
+            <PrivateRoute path="/course/:courseId/:facultyName" component={Course}/>
             <PrivateRoute path="/settings/:userId" component={Settings}/>
             <Route path="/login" component={Login}/>
             <Route path="/forgot-password" component={ForgotPassword}/>
