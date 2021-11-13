@@ -4,6 +4,7 @@ import './ChangeElective.css'
 import {useForm} from 'react-hook-form'
 import {db} from '../../firebase'
 import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
 
@@ -15,7 +16,14 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
 
     const onSubmit = (data)=>{
         setFormData(data)
-        console.log(data)
+        // console.log(data)
+        if(data.alreadyEnrolled!==data.newElective){
+            toast.success("Request Sent to the respective faculty!")
+        }else if(alreadyEnrolledCourses.includes(data.newElective)){
+            toast.error("Cannot change with already Enrolled Courses")
+        }else{
+            toast.error("Cannot change with same course")
+        }
     }
 
     const fetchCourseData=()=>{
@@ -36,6 +44,7 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
 
     return (
         <div className='change-elective-container'>
+            <Toaster/>
             <h2>Change Elective<span className='title-tooltip'> Select the course you wish to change and send request to the respective handling faculty.</span></h2>
             <p>Enrolled Courses</p>
             <div className='user-details'>
