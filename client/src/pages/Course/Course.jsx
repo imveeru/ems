@@ -4,21 +4,32 @@ import {Link} from 'react-router-dom'
 import {db} from '../../firebase'
 import './Course.css'
 import {MdOutlineArrowBackIos} from 'react-icons/md'
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+import {FiExternalLink} from 'react-icons/fi'
 
 function Course(props) {
     //console.log(props.match.params.courseId);
     const courseDbRef=db.collection('courses')
 
+    const facultyDataQuery = query(collection(db, "users"),where("role","==","faculty"),where("name","==",props.match.params.facultyName))
+
     const[course,setCourse]=useState({})
 
-    const[facultyName,setFacultyName]=useState()
+    const[facultyData,setFacultyData]=useState({})
 
     const fetchUserData=async()=>{
         const res=courseDbRef.doc(props.match.params.courseId)
         await res.onSnapshot((doc)=>{
             setCourse(doc.data())
         })
-        setFacultyName(props.match.params.facultyName)
+
+        //get faculty details
+        onSnapshot(facultyDataQuery, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setFacultyData(doc.data())
+            })
+        })
+        
     }
 
 
@@ -44,7 +55,18 @@ function Course(props) {
                     </div>
                     <p className="course-desc-title">Course Objective</p>
                     <p className="course-desc">{course.objective}</p>
-                    {facultyName?<p>{facultyName}</p>:<p>Name not available</p>}
+                    {facultyData?
+
+                        (
+                            <>
+                            <p className="course-desc-title">Faculty Details</p>
+                            <p>Name - <strong>{facultyData.name}</strong></p>
+                            <p>Serves as <strong>{facultyData.grade}</strong> in <strong>{facultyData.dept}</strong> department.</p>
+                            <a href={facultyData.link} rel="noopener noreferrer" target="_blank" className="faculty-link">Click for more details about faculty   <FiExternalLink/></a>
+                            </>
+                        )
+
+                    :null}
                 </div>
             :
                <div className="course-container">

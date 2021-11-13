@@ -65,3 +65,12 @@ h1{
 .enroll-btn{
     margin-top:20px;
 }
+
+.faculty-link{
+    text-decoration: none;
+    color:#000;
+}
+
+.faculty-link:hover{
+    text-decoration: underline;
+}

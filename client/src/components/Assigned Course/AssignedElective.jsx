@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
 import './AssignedElective.css'
 import { useForm } from "react-hook-form";
-import {FiExternalLink} from 'react-icons/fi'
+
 
 function AssignedElective({assignedCourses}) {
 
@@ -36,8 +36,8 @@ function AssignedElective({assignedCourses}) {
                                             className='elective-progress-bar'
                                     ></CircularProgressbar>
                                     <div className="assigned-elective-details">
-                                        <Link className="assigned-course-title" to={"/course/"+assignedCourse.courseCode} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
-                                        <p>Faculty - <strong>{assignedCourse.faculty}     </strong><a href='https://amrita.edu' rel="noopener noreferrer" target="_blank"><FiExternalLink/></a></p>
+                                        <Link className="assigned-course-title" to={"/course/"+assignedCourse.courseCode+"/"+assignedCourse.faculty} style={{'textDecoration':'none','color':'black'}}><p className='elective'>{assignedCourse.courseCode}</p></Link>
+                                        <p>Faculty - <strong>{assignedCourse.faculty}</strong></p>
                                     </div>
                             </div>
                             <p></p>
