@@ -15,6 +15,7 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
 
     const onSubmit = (data)=>{
         setFormData(data)
+        console.log(data)
     }
 
     const fetchCourseData=()=>{
@@ -36,13 +37,12 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
     return (
         <div className='change-elective-container'>
             <h2>Change Elective<span className='title-tooltip'> Select the course you wish to change and send request to the respective handling faculty.</span></h2>
-            <p>Enrolled Courses
+            <p>Enrolled Courses</p>
             <div className='user-details'>
                 {alreadyEnrolledCourses.map((course, index) =>(
                     <p key={index}>{course}</p>
                 ))}
             </div>
-            </p>
             {/* <p>{JSON.stringify(userData)}</p> */}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <select {...register("alreadyEnrolled")}  placeholder="Choose the course you wish to change" className="select-btn">
@@ -53,7 +53,7 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
                         ))
                     }
                 </select>
-                <select {...register("alreadyEnrolled")}  placeholder="Choose the course you wish to change" className="select-btn">
+                <select {...register("newElective")}  placeholder="Choose the course you wish to change" className="select-btn">
                     <option value="">Select the course you wish to replace with...</option>
                     {
                         assignedCourses.map((course,index)=>(
