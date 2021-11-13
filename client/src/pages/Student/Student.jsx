@@ -162,7 +162,7 @@ function Student({userData}) {
                     <AssignedElective assignedCourses={assignedCourses}/>
                     </div>
                 </div>
-                <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p>
+                {/* <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p> */}
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
             </div>
     )
