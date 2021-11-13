@@ -16,11 +16,19 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
 
     const onSubmit = (data)=>{
         setFormData(data)
-        // console.log(data)
-        if(data.alreadyEnrolled!==data.newElective){
-            toast.success("Request Sent to the respective faculty!")
-        }else if(alreadyEnrolledCourses.includes(data.newElective)){
+        console.log(data)
+        
+        if(alreadyEnrolledCourses.includes(data.newElective.split("_")[0])){
             toast.error("Cannot change with already Enrolled Courses")
+        }else if(data.alreadyEnrolled!==data.newElective.split("_")[0]){
+            db.collection('changeRequests').doc().set(data)
+            .then(()=>{
+                toast.success('Request sent to the respective faculty!')
+            })
+            .catch((err)=>{
+                console.error("Error Adding Document: " + err)
+                toast.error("Error sending request!")
+            })
         }else{
             toast.error("Cannot change with same course")
         }
@@ -58,7 +66,7 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
                     <option value="">Select the course you wish to opt out...</option>
                     {
                         alreadyEnrolledCourses.map((course,index)=>(
-                            <option key={index} value={course}>{course}</option>
+                            <option key={index} value={course+"_"+userData.yearJoined+"_"+userData.currentSem+"_"+userData.branch}>{course}</option>
                         ))
                     }
                 </select>
@@ -66,10 +74,13 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
                     <option value="">Select the course you wish to replace with...</option>
                     {
                         assignedCourses.map((course,index)=>(
-                            <option key={index} value={course.courseCode}>{course.courseCode}</option>
+                            <option key={index} value={course.courseCode+"_"+userData.yearJoined+"_"+userData.currentSem+"_"+userData.branch}>{course.courseCode}</option>
                         ))
                     }
                 </select>
+                {/* <input {...register("receiver")} type="hidden" value={userData.regNo}></input> */}
+                <input {...register("sender")} type="hidden" value={userData.regNo}></input>
+                <input {...register("isApproved")} type="hidden" value="no"></input>
                 <button type='submit' className='add-btn'>Request Change</button>
             </form>
         </div>
