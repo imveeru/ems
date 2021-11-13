@@ -7,6 +7,7 @@ import AssignedElective from './../../components/Assigned Course/AssignedElectiv
 import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
 import { useForm } from 'react-hook-form'
+import ChangeElective from './../../components/ChangeElective/ChangeElective';
 
 function Student({userData}) {
 
@@ -164,6 +165,9 @@ function Student({userData}) {
                 </div>
                 {/* <p>{JSON.stringify(options)+"   -|-   "+JSON.stringify(alreadyEnrolledCourses)}</p> */}
                 {/* {electives.length!==0?<p>{electives[0][4].elective_2}</p>:<p>Illa</p>} */}
+                {alreadyEnrolledCourses&&(
+                    <ChangeElective/>
+                )}
             </div>
     )
 }
