@@ -5,7 +5,7 @@ import {useForm} from 'react-hook-form'
 import {db} from '../../firebase'
 import { useEffect } from 'react';
 
-function ChangeElective({alreadyEnrolledCourses,userData    }) {
+function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
 
     const[courseData,setCourseData]=useState([])
 
@@ -56,11 +56,12 @@ function ChangeElective({alreadyEnrolledCourses,userData    }) {
                 <select {...register("alreadyEnrolled")}  placeholder="Choose the course you wish to change" className="select-btn">
                     <option value="">Select the course you wish to replace with...</option>
                     {
-                        alreadyEnrolledCourses.map((course,index)=>(
-                            <option key={index} value={course}>{course}</option>
+                        assignedCourses.map((course,index)=>(
+                            <option key={index} value={course.courseCode}>{course.courseCode}</option>
                         ))
                     }
                 </select>
+                <button type='submit' className='add-btn'>Request Change</button>
             </form>
         </div>
     )
