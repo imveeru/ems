@@ -3,6 +3,7 @@ import {db} from '../../firebase'
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import './Faculty.css'
 import AssignedCourse from '../../components/Assigned Course/AssignedCourse';
+import ChangeElectiveRequests from '../../components/ChangeElectiveRequests/ChangeElectiveRequests';
 
 function Faculty({userData}) {
 
@@ -73,6 +74,11 @@ function Faculty({userData}) {
                     </div>
                     <div className="change-request">
                         <h2>Elective Change Requests</h2>
+                        {
+                            changeRequests.map(changeRequest=>(
+                                <ChangeElectiveRequests request={changeRequest}></ChangeElectiveRequests>
+                            ))
+                        }
                     </div>
                 </div>
                     {/* <p>{JSON.stringify(assignedCourses[0])}</p> */}
