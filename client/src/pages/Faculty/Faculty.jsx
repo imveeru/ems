@@ -63,12 +63,18 @@ function Faculty({userData}) {
                     <p>{userData.dept}</p>
                     <p>{userData.grade}</p>
                 </div>
-                
+                <div className="content-container">
+                    <div className="assignedCourses">
                     {
                         assignedCourses.map(assignedCourse=>(
                             <AssignedCourse key={assignedCourse.courseCode} assignedCourse={assignedCourse}></AssignedCourse>
                         ))
                     }
+                    </div>
+                    <div className="change-request">
+                        <h2>Elective Change Requests</h2>
+                    </div>
+                </div>
                     {/* <p>{JSON.stringify(assignedCourses[0])}</p> */}
             </div>
     )

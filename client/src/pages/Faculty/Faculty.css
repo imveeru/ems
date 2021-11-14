@@ -1,5 +1,6 @@
 .course-assigned{
     margin-top:30px;
+    width:50%
 }
 
 .assigned-course{
@@ -7,7 +8,7 @@
     padding:25px 10px ;
     border-radius: 15px;
     margin: 15px 0;
-    width:35%;
+    width:600px;
     overflow:hidden;
     display:flex;
     align-items: center;
@@ -78,4 +79,21 @@ table,th,td{
     border: 1px solid rgba(0,0,0,0.5);
     margin-left:15px;
     margin-right:15px; 
+}
+
+.content-container{
+    display:flex;
+}
+
+.assignedCourses{
+    width:50%
+}
+
+.change-request{
+    margin-top:20px;
+    background-color:#fff;
+    padding:20px;
+    border-radius:15px;
+    width:50%;
+    height:auto;
 }
