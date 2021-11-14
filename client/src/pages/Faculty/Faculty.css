@@ -4,7 +4,7 @@
 }
 
 .assigned-course{
-    background-color:#fff;
+    background-color:#fdfdfd;
     padding:25px 10px ;
     border-radius: 15px;
     margin: 15px 0;
@@ -86,7 +86,16 @@ table,th,td{
 }
 
 .assignedCourses{
-    width:50%
+    width:50%;
+    margin-top:20px;
+    background-color:#fff;
+    padding:20px;
+    border-radius:15px;
+    width:50%;
+    height:auto;
+    margin-right: 100px;
+    height:auto;
+    padding-left: 40px;
 }
 
 .change-request{

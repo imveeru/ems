@@ -66,6 +66,7 @@ function Faculty({userData}) {
                 </div>
                 <div className="content-container">
                     <div className="assignedCourses">
+                    <h2>Assigned Elective Courses</h2>
                     {
                         assignedCourses.map(assignedCourse=>(
                             <AssignedCourse key={assignedCourse.courseCode} assignedCourse={assignedCourse}></AssignedCourse>
