@@ -25,6 +25,10 @@
     font-family: Poppins;
 }
 
+.add-btn:hover{
+    cursor: pointer;
+}
+
 .select-btn{
     background:none;
     border:none;

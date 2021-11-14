@@ -5,7 +5,7 @@ function ChangeElectiveRequests({request}) {
         <div className="request">
             <p><strong>{request.sender}</strong> has requested you to change his/her elective from <strong>{request.alreadyEnrolled.split("_")[0]}</strong> to <strong>{request.newElective.split("_")[0]}</strong></p>
             <button className="add-btn">Approve</button>
-            <button className="add-btn">Approve</button>
+            <button className="reject-btn">Reject</button>
         </div>
     )
 }
