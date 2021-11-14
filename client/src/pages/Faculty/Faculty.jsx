@@ -8,11 +8,12 @@ function Faculty({userData}) {
 
     const[assignedCourses,setAssignedCourses]=useState([])
 
+    const[changeRequests,setChangeRequests]=useState([])
+
     const q = query(collection(db, "electives"), where("faculty", "==", userData.name));
 
     const fetchUserData=async()=>{
         var assignedCourse = [];
-        
         onSnapshot(q, (querySnapshot) => {
             assignedCourse.splice(0,assignedCourse.length)
             
@@ -22,12 +23,37 @@ function Faculty({userData}) {
 
             setAssignedCourses(assignedCourse)
         });
-        //console.log(assignedCourses);
+        //console.log(assignedCourse);
+
+
+    }
+
+    const fetchChangeRequests=async ()=>{
+        var changeRequest=[];
+        assignedCourses.forEach((course)=>{
+            const queryForRequest = query(collection(db, "changeRequests"), where("newElective", "==", course.courseCode+"_"+course.batch+"_"+course.sem+"_"+course.dept));
+            onSnapshot(queryForRequest, (querySnapshot) => {
+                //changeRequest.splice(0,changeRequest.length)
+                
+                querySnapshot.forEach((doc) => {
+                    changeRequest.push(doc.data());
+                    // console.log(doc.data());
+                });
+                //console.log(changeRequest)
+                setChangeRequests(changeRequest)
+            });
+            
+        })
+        
     }
 
     useEffect(()=>{
         fetchUserData();
     },[])
+
+    useEffect(()=>{
+        fetchChangeRequests()
+    },[assignedCourses])
 
 
     return (
@@ -37,6 +63,7 @@ function Faculty({userData}) {
                     <p>{userData.dept}</p>
                     <p>{userData.grade}</p>
                 </div>
+                
                     {
                         assignedCourses.map(assignedCourse=>(
                             <AssignedCourse key={assignedCourse.courseCode} assignedCourse={assignedCourse}></AssignedCourse>
