@@ -99,3 +99,9 @@ table,th,td{
     padding-left: 40px;
 }
 
+.request{
+    margin-top:20px;
+    background-color:#fdfdfd;
+    padding:20px;
+    border-radius:15px;
+}
