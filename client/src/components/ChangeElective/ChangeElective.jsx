@@ -82,6 +82,7 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
                 <input {...register("sender")} type="hidden" value={userData.regNo}></input>
                 <input {...register("isApproved")} type="hidden" value="no"></input>
                 <input {...register("decisionMade")} type="hidden" value="no"></input>
+                <input {...register("isSeenByStudent")} type="hidden" value="no"></input>
                 <button type='submit' className='add-btn'>Request Change</button>
             </form>
         </div>
