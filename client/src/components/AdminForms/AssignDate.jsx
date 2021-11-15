@@ -30,7 +30,7 @@ function AssignDate() {
 
     const onSubmit=(data)=>{
         setFormData(data)
-        db.collection('electiveDates').doc(data.batch+"_"+data.sem).set(data)
+        db.collection('electiveDates').doc(data.batch+"_"+data.sem+"_"+data.dept).set(data)
         .then(()=>{
             toast.success('Date assigned successfully!')
         })
@@ -89,9 +89,28 @@ function AssignDate() {
                             <option value="8">8</option>
                 </select>
 
+                <select {...register("dept")} className="select-btn">
+                    <option value="">Select the department</option>
+                    <option value="CSE">CSE - Computer Science and Engineering</option>
+                    <option value="EEE">EEE - Electrical andd Electronics Engineering</option>
+                    <option value="ECE">ECE - Eclectronics and Communications Engineering</option>
+                    <option value="MEE">MEE - Mechanical Engineering</option>
+                    <option value="AEE">AEE - Aerospace Engineering</option>
+                    <option value="ENG">ENG - English</option>
+                    <option value="HUM">HUM - Humanites</option>
+                </select>
+
+                <select {...register("maxNoOfElectives")} className="select-btn">
+                    <option value="">Select the maximum number of electives</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
                 <button type="submit" className="add-btn">Assign Date</button>
             </form>
-            <p>{JSON.stringify(formData)}</p>
+            {/* <p>{JSON.stringify(formData)}</p> */}
         </div>
     )
 }

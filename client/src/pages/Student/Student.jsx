@@ -20,6 +20,8 @@ function Student({userData}) {
 
     const [changeRequests,setChangeRequests]=useState([])
 
+    const [electiveDates,setElectiveDates]=useState({})
+
     const {currentUser}=useAuth()
 
     const {handleSubmit}=useForm()
@@ -29,6 +31,8 @@ function Student({userData}) {
     const alreadyEnrolledCourseQuery = query(collection(db, "electives"), where("studentList","array-contains",userData.regNo), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
     const fetchRequestsQuery = query(collection(db, "changeRequests"), where("sender","==",userData.regNo))
+
+    //const electiveDateQuery = query(collection(db, "electiveDates"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)))
 
     const fetchUserData=async()=>{
         //const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
@@ -80,9 +84,19 @@ function Student({userData}) {
         setChangeRequests(requestList);
     }
 
+    const fetchElectiveDate=async()=>{
+        // const electiveDateList = [];
+        const electiveDateQuery=db.collection('electiveDates').doc(userData.yearJoined+"_"+userData.currentSem+"_"+userData.branch)
+        await electiveDateQuery.onSnapshot((doc)=>{
+            setElectiveDates(doc.data())
+        })
+        // setElectiveDates(electiveDateList);
+    }
+
     useEffect(()=>{
         fetchUserData()
         fetchRequests()
+        fetchElectiveDate()
     },[])
 
     const options =[];
@@ -105,7 +119,7 @@ function Student({userData}) {
 
     //return option.value!==alreadyEnrolledCourses[0]
 
-    const maxNoOfElectives=2
+    const maxNoOfElectives=parseInt(electiveDates.maxNoOfElectives)
 
     const noOfAlreadyEnrolledCourses = alreadyEnrolledCourses.length;
 
@@ -153,14 +167,16 @@ function Student({userData}) {
                     <p>{userData.section} - Section</p>
                     <p>Semester - {userData.currentSem}</p>
                 </div>
+
                 <ElectiveList electives={electives}/>
+
                 <div className="elective-choices-container">
                     <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
                     <form onSubmit={handleSubmit(handleEnroll)}> 
                     <Select
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
-                        options={(selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?options:[]}
+                        options={(selectedOption==null || selectedOption.length<((maxNoOfElectives)-noOfAlreadyEnrolledCourses))?options:[]}
                         noOptionsMessage={() => {
                             return (selectedOption==null || selectedOption.length<(maxNoOfElectives-noOfAlreadyEnrolledCourses))?"":`🤐You're limited to choose only ${(maxNoOfElectives)} elective courses!`;
                         }}
@@ -195,7 +211,7 @@ function Student({userData}) {
                     ):<p>No decisions found!</p>
                 }
                 </div>
-
+                {/* <p>{electiveDates.maxNoOfElectives+" - "+alreadyEnrolledCourses.length}</p> */}
             </div>
     )
 }
