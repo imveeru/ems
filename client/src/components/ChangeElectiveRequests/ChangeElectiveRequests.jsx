@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {useForm} from 'react-hook-form'
 import { collection, onSnapshot,updateDoc,doc, arrayRemove, arrayUnion } from "firebase/firestore";
 import {db} from '../../firebase'
+import toast, { Toaster } from 'react-hot-toast';
 
 function ChangeElectiveRequests({request}) {
 
@@ -29,6 +30,8 @@ function ChangeElectiveRequests({request}) {
             studentList:arrayUnion(data.sender)
         });
 
+        toast.success('Request approved!')
+
     }
 
     const handleReject=async (data)=>{
@@ -37,10 +40,12 @@ function ChangeElectiveRequests({request}) {
         await updateDoc(reqRef, {
             decisionMade:"yes"
         });
+        toast.success('Request Rejected!')
     }
 
     return (
         <div className="request">
+            <Toaster/>
             <p><strong>{request.sender}</strong> has requested you to change his/her elective from <strong>{request.alreadyEnrolled.split("_")[0]}</strong> to <strong>{request.newElective.split("_")[0]}</strong></p>
             <form>
             <input type="hidden" {...register("alreadyEnrolled")} value={request.alreadyEnrolled} ></input>
