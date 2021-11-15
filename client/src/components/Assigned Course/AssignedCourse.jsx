@@ -84,7 +84,7 @@ function AssignedCourse({assignedCourse}) {
                                     </label>
                                 </p>
                                 <label html-for='max-limit'>Maximum Limit</label>
-                                <input {...register("maxLimit")} defaultValue={assignedCourse.maxLimit} min={assignedCourse.maxLimit} disabled={wannaChange?"":"disabled"} id='max-limit' className='max-limit' type='number'></input>
+                                <input {...register("maxLimit")} defaultValue={assignedCourse.maxLimit} min={15} disabled={wannaChange?"":"disabled"} id='max-limit' className='max-limit' type='number'></input>
                                 <input {...register("electiveId")} type='hidden' value={assignedCourse.courseCode+"_"+assignedCourse.batch+"_"+assignedCourse.sem+"_"+assignedCourse.dept}></input>    
                                 <button type="submit" className="add-btn">Change Limit</button>
                             </form>
