@@ -13,6 +13,7 @@ import { AuthProvider } from "./context/AuthContext"
 import PrivateRoute from './routes/PrivateRoute'
 import Course from './pages/Course/Course';
 import Settings from './pages/Settings/Settings';
+import NotFound from './pages/NotFound/NotFound'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <PrivateRoute path="/settings/:userId" component={Settings}/>
             <Route path="/login" component={Login}/>
             <Route path="/forgot-password" component={ForgotPassword}/>
+            <Route component={NotFound}/>
           </Switch>
         </div>
       </AuthProvider>
