@@ -65,3 +65,12 @@
     border: 1px solid rgba(0,0,0,0.5);
     margin-bottom:15px 
 }
+
+.calendars{
+    display: flex;
+    gap:35px;
+}
+
+.calendars>p{
+    margin-bottom:0px;
+}
