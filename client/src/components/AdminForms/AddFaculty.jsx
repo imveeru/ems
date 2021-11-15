@@ -46,6 +46,7 @@ function AddStudent({uid}) {
                     <option value="HUM">HUM - Humanites</option>
                 </select>
                 <input {...register("role")} value="faculty" type="hidden"></input>
+                <input {...register("link")} type="text" placeholder="Enter faculty profile link" className="admin-input-box"></input>
                 <br/><button type="submit" className="add-btn">Save Details</button>
             </form>
             {/* {<p>{JSON.stringify(formData)}</p>} */}

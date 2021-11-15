@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {GrNotes,GrUserAdd,GrCompliance} from 'react-icons/gr'
+import {IoPersonAdd,IoNewspaper,IoEnter,IoCalendar} from 'react-icons/io5'
 import AddCourse from '../../components/AdminForms/AddCourse'
 import AddUser from '../../components/AdminForms/AddUser'
 import AssignCourse from '../../components/AdminForms/AssignCourse'
@@ -15,18 +15,23 @@ function Admin({userData}) {
                 <h1>Welcome {userData.name}!</h1>
                 <div className="admin-functions">
                     <button className="btn-add" onClick={()=>setForm("au")}>
-                        <GrUserAdd className='btn-icon' style={{"marginRight":"10px"}}/>
+                        <IoPersonAdd className='btn-icon' style={{"marginRight":"10px"}}/>
                         Add User
                     </button>
 
                     <button className="btn-add" onClick={()=>setForm("ac")}>
-                        <GrNotes style={{"marginRight":"10px"}}/>
+                        <IoNewspaper style={{"marginRight":"10px"}}/>
                         Add Course
                     </button>
 
                     <button className="btn-add" onClick={()=>setForm("as")}>
-                        <GrCompliance style={{"marginRight":"10px"}}/>
+                        <IoEnter style={{"marginRight":"10px"}}/>
                           Assign Course
+                    </button>
+
+                    <button className="btn-add" onClick={()=>setForm("ad")}>
+                        <IoCalendar style={{"marginRight":"10px"}}/>
+                          Assign Date
                     </button>
                 </div>
                 <div className="admin-forms">
