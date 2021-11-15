@@ -84,13 +84,19 @@ function Student({userData}) {
         setChangeRequests(requestList);
     }
 
+    const[startDate,setStartDate]=useState()
+    const[endDate,setEndDate]=useState()
+
     const fetchElectiveDate=async()=>{
         // const electiveDateList = [];
         const electiveDateQuery=db.collection('electiveDates').doc(userData.yearJoined+"_"+userData.currentSem+"_"+userData.branch)
         await electiveDateQuery.onSnapshot((doc)=>{
             setElectiveDates(doc.data())
+            setStartDate(doc.data().startDate.seconds);
+            setEndDate(doc.data().endDate.seconds);
         })
         // setElectiveDates(electiveDateList);
+        
     }
 
     useEffect(()=>{
@@ -120,6 +126,12 @@ function Student({userData}) {
     //return option.value!==alreadyEnrolledCourses[0]
 
     const maxNoOfElectives=parseInt(electiveDates.maxNoOfElectives)
+
+    // const startDateLocaleString=
+
+    const startDateValue = new Date((startDate*1000)+(3600000*5.5))
+
+    const endDateValue = new Date((endDate*1000)+(3600000*5.5))
 
     const noOfAlreadyEnrolledCourses = alreadyEnrolledCourses.length;
 
@@ -212,6 +224,9 @@ function Student({userData}) {
                 }
                 </div>
                 {/* <p>{electiveDates.maxNoOfElectives+" - "+alreadyEnrolledCourses.length}</p> */}
+                {/* {startDate&&(<p>{JSON.stringify(startDate)+"   -   "+JSON.stringify(endDate)}</p>)} */}
+                {/* <p>{JSON.stringify(startDateValue)+"   -   "+startDateValue}</p> */}
+
             </div>
     )
 }
