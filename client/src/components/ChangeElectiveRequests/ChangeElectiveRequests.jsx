@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import {useForm} from 'react-hook-form'
+import { collection, query, where, onSnapshot,updateDoc, arrayUnion,doc } from "firebase/firestore";
+import {db} from '../../firebase'
 
 function ChangeElectiveRequests({request}) {
 
@@ -11,8 +13,12 @@ function ChangeElectiveRequests({request}) {
 
     }
 
-    const handleReject=(data)=>{
+    const handleReject=async (data)=>{
         setFormData(data)
+        let reqRef=doc(db,"changeRequests",data.requestId)
+            await updateDoc(reqRef, {
+            decisionMade:"yes"
+        });
     }
 
     return (
