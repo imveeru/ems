@@ -133,6 +133,8 @@ function Student({userData}) {
 
     const endDateValue = new Date((endDate*1000)+(3600000*5.5))
 
+    const today=new Date()
+
     const noOfAlreadyEnrolledCourses = alreadyEnrolledCourses.length;
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -182,8 +184,11 @@ function Student({userData}) {
 
                 <ElectiveList electives={electives}/>
 
+                {((today>startDateValue)&&(today<endDateValue))?
+                (<>
                 <div className="elective-choices-container">
                     <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
+                    <p>Elective registrations closes on {new Date(endDate*1000).toLocaleString()}. <strong>{Math.round((endDateValue-today)/(1000*60*60*24))} Days left.</strong></p>
                     <form onSubmit={handleSubmit(handleEnroll)}> 
                     <Select
                         defaultValue={selectedOption}
@@ -226,7 +231,8 @@ function Student({userData}) {
                 {/* <p>{electiveDates.maxNoOfElectives+" - "+alreadyEnrolledCourses.length}</p> */}
                 {/* {startDate&&(<p>{JSON.stringify(startDate)+"   -   "+JSON.stringify(endDate)}</p>)} */}
                 {/* <p>{JSON.stringify(startDateValue)+"   -   "+startDateValue}</p> */}
-
+                </>)
+                :(<h2>Elective registrations are yet to open or closed!</h2>)}
             </div>
     )
 }
