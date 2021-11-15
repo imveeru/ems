@@ -9,7 +9,13 @@ function ChangeElectiveRequests({request}) {
 
     const[formData,setFormData] = useState({})
 
-    const handleApprove=()=>{
+    const handleApprove=async (data)=>{
+        setFormData(data)
+        let reqRef=doc(db,"changeRequests",data.requestId)
+            await updateDoc(reqRef, {
+            decisionMade:"yes",
+            isApproved:"yes"
+        });
 
     }
 
