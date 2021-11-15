@@ -17,6 +17,8 @@ function Student({userData}) {
 
     const [alreadyEnrolledCourses,setAlreadyEnrolledCourses]=useState([])
 
+    const [changeRequests,setChangeRequests]=useState([])
+
     const {currentUser}=useAuth()
 
     const {handleSubmit}=useForm()
@@ -24,6 +26,8 @@ function Student({userData}) {
     const assignedCourseQuery = query(collection(db, "electives"), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
 
     const alreadyEnrolledCourseQuery = query(collection(db, "electives"), where("studentList","array-contains",userData.regNo), where("batch", "==", String(userData.yearJoined)), where("dept", "==", String(userData.branch)), where("sem", "==", String(userData.currentSem)));
+
+    const fetchRequestsQuery = query(collection(db, "changeRequests"), where("sender","==",userData.regNo))
 
     const fetchUserData=async()=>{
         //const q=query(collection(db,`users/${currentUser.uid}/electives`),orderBy('sem','asc'))
@@ -62,11 +66,22 @@ function Student({userData}) {
           ...provided,
           padding: 20,
         }),
-      }
+    }
     
-      
+    const fetchRequests=async()=>{
+        const requestList = [];
+        onSnapshot(fetchRequestsQuery, (querySnapshot) => {
+            requestList.splice(0,requestList.length)
+            querySnapshot.forEach((doc) => {
+                requestList.push(doc.data());
+            })
+        })
+        setChangeRequests(requestList);
+    }
+
     useEffect(()=>{
         fetchUserData()
+        fetchRequests()
     },[])
 
     const options =[];
@@ -75,8 +90,6 @@ function Student({userData}) {
     assignedCourses.forEach((assignedCourse) => {
         options.push({"value":assignedCourse.courseCode,"label":assignedCourse.courseCode})
     })
-
-
 
     //filtering already registered courses    
         for(var i=0;i<alreadyEnrolledCourses.length;i++){
@@ -98,8 +111,6 @@ function Student({userData}) {
     const [selectedOption, setSelectedOption] = useState(null);
 
     const [chosenElectives, setChosenElectives] = useState([])
-
-    
 
     const handleEnroll=()=>{
         if(selectedOption==null || selectedOption.length<=0){
@@ -171,6 +182,8 @@ function Student({userData}) {
                 {alreadyEnrolledCourses.length>0&&(
                     <ChangeElective alreadyEnrolledCourses={alreadyEnrolledCourses} userData={userData} assignedCourses={assignedCourses}/>
                 )}
+
+
             </div>
     )
 }
