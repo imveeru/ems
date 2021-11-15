@@ -189,6 +189,7 @@ function Student({userData}) {
                 <div className="elective-choices-container">
                     <h2>Elective courses for Semester {userData.currentSem}<span className='title-tooltip'> Click on any course code to view about it.</span></h2>
                     <p>Elective registrations closes on {new Date(endDate*1000).toLocaleString()}. <strong>{Math.round((endDateValue-today)/(1000*60*60*24))} Days left.</strong></p>
+                    <p>Enroll in only <strong>{maxNoOfElectives} courses.</strong></p>
                     <form onSubmit={handleSubmit(handleEnroll)}> 
                     <Select
                         defaultValue={selectedOption}
