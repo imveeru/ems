@@ -3,6 +3,9 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { Calendar } from 'react-date-range';
 import { useForm } from "react-hook-form";
+import {db} from '../../firebase'
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+import toast, { Toaster } from 'react-hot-toast';
 
 function AssignDate() {
 
@@ -27,7 +30,14 @@ function AssignDate() {
 
     const onSubmit=(data)=>{
         setFormData(data)
-        
+        db.collection('electiveDates').doc(data.batch+"_"+data.sem).set(data)
+        .then(()=>{
+            toast.success('Date assigned successfully!')
+        })
+        .catch((error)=>{
+            console.error('Error assigning date: ',error)
+            toast.error('Error assigning date!')
+        })
     }
 
     return (
