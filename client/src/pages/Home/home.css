@@ -75,9 +75,35 @@ h1{
     text-decoration: underline;
 }
 
-.decision{
+.decisions{
     margin-top:20px;
     background-color:#fff;
     padding:20px;
     border-radius:15px;
+}
+
+.decision{
+    margin-top:20px;
+    background-color:#fdfdfd;
+    padding:15px;
+    border-radius:15px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.ok-btn{
+    background:rgba(46,106,218);
+    border:none;
+    padding:8px;
+    height:100%;
+    border-radius:10px;
+    font-size:16px;
+    color:#fff;
+    font-weight: 600;
+    font-family: Poppins;
+}
+
+.ok-btn:hover{
+    cursor:pointer
 }
