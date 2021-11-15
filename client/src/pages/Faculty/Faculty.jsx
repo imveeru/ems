@@ -81,7 +81,8 @@ function Faculty({userData}) {
                                 <ChangeElectiveRequests request={changeRequest}></ChangeElectiveRequests>
                                 :<p>No new requests received.</p>
                             ))):(
-                                <p>No new requests received.</p>
+                                // <p>No new requests received.</p>
+                                <></>
                             )
                         }
                     </div>
