@@ -39,6 +39,7 @@ function Admin({userData}) {
                 <div className="admin-forms">
                     {form==="au"?<AddUser/>:form==="ac"?<AddCourse/>:form==="as"?<AssignCourse/>:form==="ad"?<AssignDate/>:<p>Choose an action!</p>}
                 </div>
+                
             </div>
     )
 }
