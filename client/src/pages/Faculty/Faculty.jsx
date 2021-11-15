@@ -54,7 +54,7 @@ function Faculty({userData}) {
 
     useEffect(()=>{
         fetchChangeRequests()
-    },[assignedCourses])
+    },[assignedCourses,changeRequests])
 
 
     return (
@@ -77,9 +77,11 @@ function Faculty({userData}) {
                         <h2>Elective Change Requests</h2>
                         {changeRequests.length>0?
                             (changeRequests.map(changeRequest=>(
+                                changeRequest.decisionMade==="no"?
                                 <ChangeElectiveRequests request={changeRequest}></ChangeElectiveRequests>
+                                :<p>No new requests received.</p>
                             ))):(
-                                <p>No requests received.</p>
+                                <p>No new requests received.</p>
                             )
                         }
                     </div>
