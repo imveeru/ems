@@ -34,7 +34,7 @@ function ChangeElectiveRequests({request}) {
     const handleReject=async (data)=>{
         setFormData(data)
         let reqRef=doc(db,"changeRequests",data.requestId)
-            await updateDoc(reqRef, {
+        await updateDoc(reqRef, {
             decisionMade:"yes"
         });
     }
