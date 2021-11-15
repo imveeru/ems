@@ -75,10 +75,12 @@ function Faculty({userData}) {
                     </div>
                     <div className="change-request">
                         <h2>Elective Change Requests</h2>
-                        {
-                            changeRequests.map(changeRequest=>(
+                        {changeRequests.length>0?
+                            (changeRequests.map(changeRequest=>(
                                 <ChangeElectiveRequests request={changeRequest}></ChangeElectiveRequests>
-                            ))
+                            ))):(
+                                <p>No requests received.</p>
+                            )
                         }
                     </div>
                 </div>

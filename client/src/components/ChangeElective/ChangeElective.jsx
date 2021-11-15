@@ -16,12 +16,12 @@ function ChangeElective({alreadyEnrolledCourses,userData,assignedCourses}) {
 
     const onSubmit = (data)=>{
         setFormData(data)
-        console.log(data)
+        //console.log(data)
         
         if(alreadyEnrolledCourses.includes(data.newElective.split("_")[0])){
             toast.error("Cannot change with already Enrolled Courses")
         }else if(data.alreadyEnrolled!==data.newElective.split("_")[0]){
-            db.collection('changeRequests').doc().set(data)
+            db.collection('changeRequests').doc(data.alreadyEnrolled+"_to_"+data.newElective+"_from_"+data.sender).set(data)
             .then(()=>{
                 toast.success('Request sent to the respective faculty!')
             })
