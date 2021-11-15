@@ -4,7 +4,9 @@ import AddCourse from '../../components/AdminForms/AddCourse'
 import AddUser from '../../components/AdminForms/AddUser'
 import AssignCourse from '../../components/AdminForms/AssignCourse'
 
+
 import './Admin.css'
+import AssignDate from './../../components/AdminForms/AssignDate';
 
 function Admin({userData}) {
 
@@ -35,7 +37,7 @@ function Admin({userData}) {
                     </button>
                 </div>
                 <div className="admin-forms">
-                    {form==="au"?<AddUser/>:form==="ac"?<AddCourse/>:form==="as"?<AssignCourse/>:<p>Choose an action!</p>}
+                    {form==="au"?<AddUser/>:form==="ac"?<AddCourse/>:form==="as"?<AssignCourse/>:form==="ad"?<AssignDate/>:<p>Choose an action!</p>}
                 </div>
             </div>
     )
