@@ -74,3 +74,10 @@ h1{
 .faculty-link:hover{
     text-decoration: underline;
 }
+
+.decision{
+    margin-top:20px;
+    background-color:#fff;
+    padding:20px;
+    border-radius:15px;
+}

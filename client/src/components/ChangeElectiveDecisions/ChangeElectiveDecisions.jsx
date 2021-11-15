@@ -2,7 +2,7 @@ import React from 'react'
 
 function ChangeElectiveDecisions() {
     return (
-        <div className="request">
+        <div className="decision">
             <p>decisions</p>
         </div>
     )

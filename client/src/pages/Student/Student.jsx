@@ -8,6 +8,7 @@ import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
 import { useForm } from 'react-hook-form'
 import ChangeElective from './../../components/ChangeElective/ChangeElective';
+import ChangeElectiveDecisions from '../../components/ChangeElectiveDecisions/ChangeElectiveDecisions';
 
 function Student({userData}) {
 
@@ -183,6 +184,11 @@ function Student({userData}) {
                     <ChangeElective alreadyEnrolledCourses={alreadyEnrolledCourses} userData={userData} assignedCourses={assignedCourses}/>
                 )}
 
+                {
+                    changeRequests.length>0&&(
+                        <ChangeElectiveDecisions requests={changeRequests}/>
+                    )
+                }
 
             </div>
     )
