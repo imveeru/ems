@@ -6,7 +6,7 @@ import {MdOutlineArrowBackIos} from 'react-icons/md'
 function NotFound() {
     return (
         <div>
-            <Header/>
+            {/* <Header/> */}
             <div className="back-btn">
                     <MdOutlineArrowBackIos/>
                     <Link to="/" style={{'textDecoration':'none','color': 'black'}}><h3>Back</h3></Link>
